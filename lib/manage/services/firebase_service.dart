@@ -7,6 +7,7 @@ class FirebaseService {
 
   static FirebaseFirestore get firestore => _firestore;
 
+  // kiểm tra id hiện tại của category tới đâu để tăng dần
   static Future<int> getNextCategoryId() async {
     final counterRef =
         FirebaseFirestore.instance.collection('counters').doc('category');
@@ -22,6 +23,7 @@ class FirebaseService {
     }
   }
 
+  // thêm category
   static Future<void> addCategory(Category category) async {
     int id = await getNextCategoryId();
     category.id = id.toString();
@@ -31,6 +33,7 @@ class FirebaseService {
         .set(category.toMap());
   }
 
+  // lấy toàn bộ category
   static Stream<List<Category>> getAllCategories() {
     return FirebaseFirestore.instance
         .collection('categories')
@@ -42,6 +45,7 @@ class FirebaseService {
     });
   }
 
+  // thêm sách
   static Future<void> addBook(Book book) async {
     CollectionReference books = FirebaseFirestore.instance.collection('books');
 
@@ -51,5 +55,23 @@ class FirebaseService {
     }
 
     await books.doc(book.bookName).set(book.toMap());
+  }
+
+  // lấy sách dựa trên category
+  static Stream<List<Book>> getBooksByCategory(String idCategory) {
+    return _firestore
+        .collection('books')
+        .where('idCategory', isEqualTo: idCategory)
+        .snapshots()
+        .map((snapshot) {
+      return snapshot.docs.map((doc) => Book.fromMap(doc.data())).toList();
+    });
+  }
+
+  // lấy toàn bộ sách
+  static Stream<List<Book>> getAllBooks() {
+    return _firestore.collection('books').snapshots().map((snapshot) {
+      return snapshot.docs.map((doc) => Book.fromMap(doc.data())).toList();
+    });
   }
 }
