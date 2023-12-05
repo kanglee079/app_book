@@ -5,7 +5,7 @@ class Book {
   String? id;
   String? bookName;
   String? authorName;
-  String? nameCategory;
+  String? idCategory;
   String? desc;
   String? photoUrl;
   String? pdfUrl;
@@ -13,7 +13,7 @@ class Book {
     this.id,
     this.bookName,
     this.authorName,
-    this.nameCategory,
+    this.idCategory,
     this.desc,
     this.photoUrl,
     this.pdfUrl,
@@ -24,7 +24,7 @@ class Book {
       'id': id,
       'bookName': bookName,
       'authorName': authorName,
-      'nameCategory': nameCategory,
+      'idCategory': idCategory,
       'desc': desc,
       'photoUrl': photoUrl,
       'pdfUrl': pdfUrl,
@@ -37,8 +37,8 @@ class Book {
       bookName: map['bookName'] != null ? map['bookName'] as String : null,
       authorName:
           map['authorName'] != null ? map['authorName'] as String : null,
-      nameCategory:
-          map['nameCategory'] != null ? map['nameCategory'] as String : null,
+      idCategory:
+          map['idCategory'] != null ? map['idCategory'] as String : null,
       desc: map['desc'] != null ? map['desc'] as String : null,
       photoUrl: map['photoUrl'] != null ? map['photoUrl'] as String : null,
       pdfUrl: map['pdfUrl'] != null ? map['pdfUrl'] as String : null,

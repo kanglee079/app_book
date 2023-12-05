@@ -1,8 +1,10 @@
 import 'package:app_book/manage/services/firebase_service.dart';
+import 'package:app_book/models/book_model.dart';
 import 'package:app_book/models/category_model.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
+import '../../../apps/helper/randomId.dart';
 import '../../../widgets/custom_text_field.dart';
 import '../../../widgets/item_dropdown.dart';
 
@@ -14,7 +16,7 @@ class AddBookPage extends StatefulWidget {
 }
 
 class _AddBookPageState extends State<AddBookPage> {
-  String? selectedValue;
+  String? selectedCategoryId;
   TextEditingController nameBookController = TextEditingController();
   TextEditingController nameAuthorController = TextEditingController();
   TextEditingController descController = TextEditingController();
@@ -42,112 +44,116 @@ class _AddBookPageState extends State<AddBookPage> {
             )
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              StreamBuilder<List<Category>>(
-                stream: FirebaseService.getAllCategories(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<List<Category>> snapshot) {
-                  if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  }
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.none:
-                      return const Text('Chưa kết nối.');
-                    case ConnectionState.waiting:
-                      return const Center(child: CircularProgressIndicator());
-                    case ConnectionState.active:
-                    case ConnectionState.done:
-                      if (snapshot.hasData) {
-                        List<Category> categories = snapshot.data!;
-                        return ItemDropdown(
-                          dropDown: DropdownSearch<String>(
-                            popupProps: const PopupProps.menu(
-                              showSelectedItems: true,
-                            ),
-                            items: categories
-                                .map((e) => e.nameCategory ?? '')
-                                .toList(),
-                            dropdownDecoratorProps: DropDownDecoratorProps(
-                              dropdownSearchDecoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                StreamBuilder<List<Category>>(
+                  stream: FirebaseService.getAllCategories(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<Category>> snapshot) {
+                    if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    }
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.none:
+                        return const Text('Chưa kết nối.');
+                      case ConnectionState.waiting:
+                        return ItemDropdown(dropDown: DropdownSearch<String>());
+                      case ConnectionState.active:
+                      case ConnectionState.done:
+                        if (snapshot.hasData) {
+                          List<Category> categories = snapshot.data!;
+                          return ItemDropdown(
+                            dropDown: DropdownSearch<Category>(
+                              popupProps: const PopupProps.menu(
+                                showSelectedItems: true,
+                              ),
+                              items: categories,
+                              itemAsString: (Category? category) =>
+                                  category?.nameCategory ?? '',
+                              compareFn: (Category? a, Category? b) =>
+                                  a?.id == b?.id,
+                              dropdownDecoratorProps: DropDownDecoratorProps(
+                                dropdownSearchDecoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide:
+                                        const BorderSide(color: Colors.grey),
+                                  ),
                                 ),
                               ),
+                              onChanged: (Category? newValue) {
+                                selectedCategoryId = newValue?.id;
+                              },
+                              selectedItem: null,
                             ),
-                            onChanged: (newValue) {
-                              selectedValue = newValue;
-                            },
-                            selectedItem: selectedValue,
-                          ),
-                        );
-                      } else {
-                        return const Text('Không có dữ liệu.');
-                      }
-                  }
-                },
-              ),
-              const SizedBox(height: 20),
-              CustomTextField(
-                nameField: "Tên sách:",
-                icon: Icons.category_outlined,
-                controller: nameBookController,
-              ),
-              const SizedBox(height: 20),
-              CustomTextField(
-                nameField: "Tên tác giả:",
-                icon: Icons.attribution_sharp,
-                controller: nameAuthorController,
-              ),
-              const SizedBox(height: 20),
-              CustomTextField(
-                nameField: "Mô tả:",
-                icon: Icons.description_outlined,
-                controller: descController,
-              ),
-              const SizedBox(height: 20),
-              CustomTextField(
-                nameField: "Đường dẫn hình ảnh:",
-                icon: Icons.photo_library_outlined,
-                controller: photoUrlController,
-              ),
-              const SizedBox(height: 20),
-              CustomTextField(
-                nameField: "Đường dẫn PDF:",
-                icon: Icons.picture_as_pdf_outlined,
-                controller: pdfUrlController,
-              ),
-            ],
+                          );
+                        } else {
+                          return const Text('Không có dữ liệu.');
+                        }
+                    }
+                  },
+                ),
+                const SizedBox(height: 20),
+                CustomTextField(
+                  nameField: "Tên sách:",
+                  icon: Icons.category_outlined,
+                  controller: nameBookController,
+                ),
+                const SizedBox(height: 20),
+                CustomTextField(
+                  nameField: "Tên tác giả:",
+                  icon: Icons.attribution_sharp,
+                  controller: nameAuthorController,
+                ),
+                const SizedBox(height: 20),
+                CustomTextField(
+                  nameField: "Mô tả:",
+                  icon: Icons.description_outlined,
+                  controller: descController,
+                ),
+                const SizedBox(height: 20),
+                CustomTextField(
+                  nameField: "Đường dẫn hình ảnh:",
+                  icon: Icons.photo_library_outlined,
+                  controller: photoUrlController,
+                ),
+                const SizedBox(height: 20),
+                CustomTextField(
+                  nameField: "Đường dẫn PDF:",
+                  icon: Icons.picture_as_pdf_outlined,
+                  controller: pdfUrlController,
+                ),
+              ],
+            ),
           ),
         ),
         bottomNavigationBar: InkWell(
           onTap: () {
-            // var rdId = generateRandomIdBook();
-            // if (selectedValue != null) {
-            //   FirebaseService.addBookToCategory(
-            //       selectedValue!,
-            //       Book(
-            //         id: rdId,
-            //         bookName: nameBookController.text,
-            //         authorName: nameAuthorController.text,
-            //         nameCategory: selectedValue,
-            //         desc: descController.text,
-            //         photoUrl: "",
-            //         pdfUrl: "",
-            //       ));
-            // }
-            // nameBookController.clear();
-            // nameAuthorController.clear();
-            // descController.clear();
-            // photoUrlController.clear();
-            // pdfUrlController.clear();
-            // selectedValue = "";
+            var rdId = generateRandomIdBook();
+            if (selectedCategoryId != null) {
+              FirebaseService.addBook(
+                Book(
+                  id: rdId,
+                  idCategory: selectedCategoryId,
+                  bookName: nameBookController.text,
+                  authorName: nameAuthorController.text,
+                  desc: descController.text,
+                  photoUrl: photoUrlController.text,
+                  pdfUrl: pdfUrlController.text,
+                ),
+              );
+            }
+            nameBookController.clear();
+            nameAuthorController.clear();
+            descController.clear();
+            photoUrlController.clear();
+            pdfUrlController.clear();
+            selectedCategoryId = null;
           },
           child: Ink(
             decoration: const BoxDecoration(

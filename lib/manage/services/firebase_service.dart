@@ -42,38 +42,14 @@ class FirebaseService {
     });
   }
 
-  static Future<void> addBookToCategory(String categoryName, Book book) async {
-    if (categoryName.isEmpty) {
-      print("Tên thể loại không thể rỗng");
+  static Future<void> addBook(Book book) async {
+    CollectionReference books = FirebaseFirestore.instance.collection('books');
+
+    final bookExists = await books.doc(book.bookName).get();
+    if (bookExists.exists) {
+      throw Exception('Một sách với tên này đã tồn tại.');
     }
-    await _firestore
-        .collection('Manage')
-        .doc('categories')
-        .collection(categoryName)
-        .doc(book.id)
-        .set(book.toMap());
-  }
 
-  static Stream<List<Book>> getBooksFromCategory(String categoryName) {
-    return _firestore
-        .collection('Manage')
-        .doc('categories')
-        .collection(categoryName)
-        .snapshots()
-        .map((snapshot) =>
-            snapshot.docs.map((doc) => Book.fromMap(doc.data())).toList());
-  }
-
-  static Future<List<Book>> getAllBooks() async {
-    var categoriesSnapshot =
-        await _firestore.collection('Manage').doc('categories').get();
-    if (!categoriesSnapshot.exists) return [];
-
-    List<dynamic> categories = categoriesSnapshot.data()!['categoryList'];
-    var allBooksFutures =
-        categories.map((category) => getBooksFromCategory(category).first);
-
-    var allBooksLists = await Future.wait(allBooksFutures);
-    return allBooksLists.expand((books) => books).toList();
+    await books.doc(book.bookName).set(book.toMap());
   }
 }
