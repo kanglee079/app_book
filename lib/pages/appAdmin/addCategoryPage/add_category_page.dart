@@ -1,4 +1,5 @@
 import 'package:app_book/manage/services/firebase_service.dart';
+import 'package:app_book/models/category_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/custom_text_field.dart';
@@ -44,7 +45,8 @@ class AddCategoryPage extends StatelessWidget {
         bottomNavigationBar: InkWell(
           onTap: () {
             if (nameCategoryController.text.isNotEmpty) {
-              FirebaseService.addCategory(nameCategoryController.text);
+              FirebaseService.addCategory(
+                  Category(nameCategory: nameCategoryController.text));
             }
             nameCategoryController.clear();
           },

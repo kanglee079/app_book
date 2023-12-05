@@ -1,4 +1,5 @@
 import 'package:app_book/apps/route/route_name.dart';
+import 'package:app_book/models/category_model.dart';
 import 'package:app_book/widgets/search_book.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,10 +47,10 @@ class AdminCategoryPage extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 10),
-                StreamBuilder<List<String>>(
+                StreamBuilder<List<Category>>(
                   stream: FirebaseService.getAllCategories(),
                   builder: (BuildContext context,
-                      AsyncSnapshot<List<String>> snapshot) {
+                      AsyncSnapshot<List<Category>> snapshot) {
                     if (snapshot.hasError) {
                       return Text('Error: ${snapshot.error}');
                     }
@@ -61,7 +62,7 @@ class AdminCategoryPage extends StatelessWidget {
                       case ConnectionState.active:
                       case ConnectionState.done:
                         if (snapshot.hasData) {
-                          List<String> categories = snapshot.data!;
+                          List<Category> categories = snapshot.data!;
                           return ListView.separated(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
@@ -74,7 +75,7 @@ class AdminCategoryPage extends StatelessWidget {
                             itemBuilder: (BuildContext context, int index) {
                               return ItemCategory(
                                 index: index,
-                                nameCategory: categories[index],
+                                nameCategory: categories[index].nameCategory,
                               );
                             },
                           );

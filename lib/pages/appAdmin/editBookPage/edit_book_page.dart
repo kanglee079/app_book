@@ -1,4 +1,5 @@
 import 'package:app_book/manage/services/firebase_service.dart';
+import 'package:app_book/models/category_model.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
@@ -46,10 +47,10 @@ class _EditBookPageState extends State<EditBookPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              StreamBuilder<List<String>>(
+              StreamBuilder<List<Category>>(
                 stream: FirebaseService.getAllCategories(),
                 builder: (BuildContext context,
-                    AsyncSnapshot<List<String>> snapshot) {
+                    AsyncSnapshot<List<Category>> snapshot) {
                   if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   }
@@ -61,13 +62,15 @@ class _EditBookPageState extends State<EditBookPage> {
                     case ConnectionState.active:
                     case ConnectionState.done:
                       if (snapshot.hasData) {
-                        List<String> categories = snapshot.data!;
+                        List<Category> categories = snapshot.data!;
                         return ItemDropdown(
                           dropDown: DropdownSearch<String>(
                             popupProps: const PopupProps.menu(
                               showSelectedItems: true,
                             ),
-                            items: categories,
+                            items: categories
+                                .map((e) => e.nameCategory ?? "")
+                                .toList(),
                             dropdownDecoratorProps: DropDownDecoratorProps(
                               dropdownSearchDecoration: InputDecoration(
                                 border: OutlineInputBorder(

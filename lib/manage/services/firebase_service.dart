@@ -1,4 +1,5 @@
 import 'package:app_book/models/book_model.dart';
+import 'package:app_book/models/category_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseService {
@@ -6,28 +7,38 @@ class FirebaseService {
 
   static FirebaseFirestore get firestore => _firestore;
 
-  static Future<void> addCategory(String categoryName) async {
-    DocumentReference categoriesDocRef =
-        _firestore.collection('Manage').doc('categories');
+  static Future<int> getNextCategoryId() async {
+    final counterRef =
+        FirebaseFirestore.instance.collection('counters').doc('category');
+    final snapshot = await counterRef.get();
 
-    await categoriesDocRef.collection(categoryName).add({});
-
-    await categoriesDocRef.set({
-      'categoryList': FieldValue.arrayUnion([categoryName])
-    }, SetOptions(merge: true));
+    if (!snapshot.exists) {
+      await counterRef.set({'currentId': 1});
+      return 1;
+    } else {
+      int currentId = snapshot.data()!['currentId'];
+      await counterRef.update({'currentId': FieldValue.increment(1)});
+      return currentId + 1;
+    }
   }
 
-  static Stream<List<String>> getAllCategories() {
-    return _firestore
-        .collection('Manage')
-        .doc('categories')
+  static Future<void> addCategory(Category category) async {
+    int id = await getNextCategoryId();
+    category.id = id.toString();
+    await FirebaseFirestore.instance
+        .collection('categories')
+        .doc(category.id)
+        .set(category.toMap());
+  }
+
+  static Stream<List<Category>> getAllCategories() {
+    return FirebaseFirestore.instance
+        .collection('categories')
         .snapshots()
         .map((snapshot) {
-      if (snapshot.exists && snapshot.data()!.containsKey('categoryList')) {
-        List<dynamic> categories = snapshot.data()!['categoryList'];
-        return categories.map((e) => e.toString()).toList();
-      }
-      return [];
+      return snapshot.docs.map((doc) {
+        return Category.fromMap(doc.data());
+      }).toList();
     });
   }
 

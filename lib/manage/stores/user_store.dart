@@ -1,4 +1,5 @@
 import 'package:app_book/apps/const/key.dart';
+import 'package:app_book/apps/route/route_name.dart';
 import 'package:app_book/manage/services/store_service.dart';
 import 'package:app_book/models/user_model.dart';
 import 'package:get/get.dart';
@@ -26,6 +27,7 @@ class UserStore extends GetxController {
   }
 
   logout() {
+    Get.offAndToNamed(RouterName.login);
     _isLogin.value = false;
     _token.value = "";
     StoreService.to.clean(MyKey.TOKEN_USER);
