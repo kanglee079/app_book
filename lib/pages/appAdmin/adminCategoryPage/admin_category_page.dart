@@ -76,6 +76,7 @@ class AdminCategoryPage extends StatelessWidget {
                               return ItemCategory(
                                 index: index,
                                 nameCategory: categories[index].nameCategory,
+                                idCategory: categories[index].id,
                               );
                             },
                           );

@@ -1,9 +1,12 @@
+import 'package:app_book/apps/helper/showToast.dart';
 import 'package:app_book/apps/route/route_name.dart';
+import 'package:app_book/manage/services/firebase_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
 class ItemBook extends StatelessWidget {
+  String idBook;
   String? bookName;
   String? authorName;
   String? desc;
@@ -13,6 +16,7 @@ class ItemBook extends StatelessWidget {
     required this.bookName,
     required this.authorName,
     required this.desc,
+    required this.idBook,
   });
 
   @override
@@ -22,10 +26,10 @@ class ItemBook extends StatelessWidget {
       endActionPane: ActionPane(
         motion: const ScrollMotion(),
         children: [
-          const SizedBox(width: 1),
+          const SizedBox(width: 2),
           SlidableAction(
             onPressed: (context) {
-              Get.toNamed(RouterName.editBook);
+              Get.toNamed(RouterName.editBook, arguments: idBook);
             },
             backgroundColor: Colors.grey,
             foregroundColor: Colors.white,
@@ -35,7 +39,14 @@ class ItemBook extends StatelessWidget {
           ),
           const SizedBox(width: 1),
           SlidableAction(
-            onPressed: print,
+            onPressed: (context) {
+              try {
+                FirebaseService.deleteBook(idBook);
+                showToastSuccess("Xoá thành công!");
+              } catch (e) {
+                showToastError("Xoá thất bại do $e");
+              }
+            },
             backgroundColor: Colors.grey,
             foregroundColor: Colors.white,
             borderRadius: BorderRadius.circular(15),

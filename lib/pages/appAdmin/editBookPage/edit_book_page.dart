@@ -1,27 +1,52 @@
+import 'package:app_book/apps/helper/showToast.dart';
 import 'package:app_book/manage/services/firebase_service.dart';
+import 'package:app_book/models/book_model.dart';
 import 'package:app_book/models/category_model.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../widgets/custom_text_field.dart';
 import '../../../widgets/item_dropdown.dart';
 
 class EditBookPage extends StatefulWidget {
-  const EditBookPage({super.key});
+  const EditBookPage({
+    super.key,
+  });
 
   @override
   State<EditBookPage> createState() => _EditBookPageState();
 }
 
 class _EditBookPageState extends State<EditBookPage> {
-  String? selectedValue;
+  String? idBook = Get.arguments as String?;
+  String? selectedCategoryId;
+
+  TextEditingController nameBookController = TextEditingController();
+  TextEditingController nameAuthorController = TextEditingController();
+  TextEditingController descController = TextEditingController();
+  TextEditingController photoUrlController = TextEditingController();
+  TextEditingController pdfUrlController = TextEditingController();
+
+  void loadBookData() async {
+    Book currentBook = await FirebaseService.getBookById(idBook!);
+    nameBookController.text = currentBook.bookName ?? '';
+    nameAuthorController.text = currentBook.authorName ?? '';
+    descController.text = currentBook.desc ?? '';
+    photoUrlController.text = currentBook.photoUrl ?? '';
+    pdfUrlController.text = currentBook.pdfUrl ?? '';
+    selectedCategoryId = currentBook.idCategory;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    loadBookData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController nameBookController = TextEditingController();
-    TextEditingController nameAuthorController = TextEditingController();
-    TextEditingController descController = TextEditingController();
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
@@ -58,19 +83,21 @@ class _EditBookPageState extends State<EditBookPage> {
                     case ConnectionState.none:
                       return const Text('Chưa kết nối.');
                     case ConnectionState.waiting:
-                      return const CircularProgressIndicator();
+                      return ItemDropdown(dropDown: DropdownSearch<String>());
                     case ConnectionState.active:
                     case ConnectionState.done:
                       if (snapshot.hasData) {
                         List<Category> categories = snapshot.data!;
                         return ItemDropdown(
-                          dropDown: DropdownSearch<String>(
+                          dropDown: DropdownSearch<Category>(
                             popupProps: const PopupProps.menu(
                               showSelectedItems: true,
                             ),
-                            items: categories
-                                .map((e) => e.nameCategory ?? "")
-                                .toList(),
+                            items: categories,
+                            itemAsString: (Category? category) =>
+                                category?.nameCategory ?? '',
+                            compareFn: (Category? a, Category? b) =>
+                                a?.id == b?.id,
                             dropdownDecoratorProps: DropDownDecoratorProps(
                               dropdownSearchDecoration: InputDecoration(
                                 border: OutlineInputBorder(
@@ -80,9 +107,10 @@ class _EditBookPageState extends State<EditBookPage> {
                                 ),
                               ),
                             ),
-                            onChanged: (newValue) {
-                              selectedValue = newValue;
+                            onChanged: (Category? newValue) {
+                              selectedCategoryId = newValue?.id;
                             },
+                            selectedItem: null,
                           ),
                         );
                       } else {
@@ -109,11 +137,40 @@ class _EditBookPageState extends State<EditBookPage> {
                 icon: Icons.description,
                 controller: descController,
               ),
+              const SizedBox(height: 20),
+              CustomTextField(
+                nameField: "Đường dẫn hình ảnh:",
+                icon: Icons.photo_library_outlined,
+                controller: photoUrlController,
+              ),
+              const SizedBox(height: 20),
+              CustomTextField(
+                nameField: "Đường dẫn PDF:",
+                icon: Icons.picture_as_pdf_outlined,
+                controller: pdfUrlController,
+              ),
             ],
           ),
         ),
         bottomNavigationBar: InkWell(
-          onTap: () {},
+          onTap: () async {
+            try {
+              await FirebaseService.updateBook(
+                Book(
+                  idCategory: selectedCategoryId,
+                  bookName: nameBookController.text,
+                  authorName: nameAuthorController.text,
+                  desc: descController.text,
+                  photoUrl: photoUrlController.text,
+                  pdfUrl: pdfUrlController.text,
+                  id: idBook!,
+                ),
+              );
+              showToastSuccess("Cập nhật sách thành công!");
+            } catch (e) {
+              showToastError("Cập nhật thất bại do $e");
+            }
+          },
           child: Container(
             width: double.infinity,
             height: 55,

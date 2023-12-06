@@ -1,3 +1,4 @@
+import 'package:app_book/apps/helper/showToast.dart';
 import 'package:app_book/manage/services/firebase_service.dart';
 import 'package:app_book/models/category_model.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,7 @@ class AddCategoryPage extends StatelessWidget {
                   Category(nameCategory: nameCategoryController.text));
             }
             nameCategoryController.clear();
+            showToastSuccess("Thêm thể loại thành công!");
           },
           child: Ink(
             decoration: const BoxDecoration(

@@ -146,6 +146,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "fluttertoast",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/fluttertoast-8.2.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "get",
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/get-4.6.6",
       "packageUri": "lib/",
@@ -350,7 +356,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2023-12-05T12:23:01.600584Z",
+  "generated": "2023-12-06T06:05:34.128706Z",
   "generator": "pub",
   "generatorVersion": "3.2.2"
 }

@@ -45,16 +45,45 @@ class FirebaseService {
     });
   }
 
+  // lấy category dựa trên id
+  static Future<Category> getCategoryById(String categoryId) async {
+    DocumentSnapshot doc =
+        await _firestore.collection('categories').doc(categoryId).get();
+
+    if (!doc.exists) {
+      throw Exception('Category not found');
+    }
+
+    return Category.fromMap(doc.data() as Map<String, dynamic>);
+  }
+
+  // sửa category
+  static Future<void> updateCategory(Category category) async {
+    if (category.id == null) {
+      throw Exception('Category ID is null');
+    }
+
+    await _firestore
+        .collection('categories')
+        .doc(category.id)
+        .update(category.toMap());
+  }
+
+  // xoá category
+  static Future<void> deleteCategory(String categoryId) async {
+    await _firestore.collection('categories').doc(categoryId).delete();
+  }
+
   // thêm sách
   static Future<void> addBook(Book book) async {
-    CollectionReference books = FirebaseFirestore.instance.collection('books');
+    CollectionReference books = _firestore.collection('books');
 
-    final bookExists = await books.doc(book.bookName).get();
+    final bookExists = await books.doc(book.id).get();
     if (bookExists.exists) {
       throw Exception('Một sách với tên này đã tồn tại.');
     }
 
-    await books.doc(book.bookName).set(book.toMap());
+    await books.doc(book.id).set(book.toMap());
   }
 
   // lấy sách dựa trên category
@@ -68,10 +97,35 @@ class FirebaseService {
     });
   }
 
+  // lấy sách dựa trên id sách
+  static Future<Book> getBookById(String bookId) async {
+    DocumentSnapshot doc =
+        await _firestore.collection('books').doc(bookId).get();
+
+    if (!doc.exists) {
+      throw Exception('Book not found');
+    }
+
+    return Book.fromMap(doc.data() as Map<String, dynamic>);
+  }
+
   // lấy toàn bộ sách
   static Stream<List<Book>> getAllBooks() {
     return _firestore.collection('books').snapshots().map((snapshot) {
       return snapshot.docs.map((doc) => Book.fromMap(doc.data())).toList();
     });
+  }
+
+  // sửa sách
+  static Future<void> updateBook(Book book) async {
+    if (book.id.isEmpty) {
+      throw Exception('Book ID is null or empty');
+    }
+    await _firestore.collection('books').doc(book.id).update(book.toMap());
+  }
+
+  // xoá sách
+  static Future<void> deleteBook(String bookId) async {
+    await _firestore.collection('books').doc(bookId).delete();
   }
 }

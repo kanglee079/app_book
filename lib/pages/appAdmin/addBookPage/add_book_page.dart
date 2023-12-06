@@ -1,3 +1,4 @@
+import 'package:app_book/apps/helper/showToast.dart';
 import 'package:app_book/manage/services/firebase_service.dart';
 import 'package:app_book/models/book_model.dart';
 import 'package:app_book/models/category_model.dart';
@@ -134,26 +135,31 @@ class _AddBookPageState extends State<AddBookPage> {
         ),
         bottomNavigationBar: InkWell(
           onTap: () {
-            var rdId = generateRandomIdBook();
-            if (selectedCategoryId != null) {
-              FirebaseService.addBook(
-                Book(
-                  id: rdId,
-                  idCategory: selectedCategoryId,
-                  bookName: nameBookController.text,
-                  authorName: nameAuthorController.text,
-                  desc: descController.text,
-                  photoUrl: photoUrlController.text,
-                  pdfUrl: pdfUrlController.text,
-                ),
-              );
+            try {
+              var rdId = generateRandomIdBook();
+              if (selectedCategoryId != null) {
+                FirebaseService.addBook(
+                  Book(
+                    id: rdId,
+                    idCategory: selectedCategoryId,
+                    bookName: nameBookController.text,
+                    authorName: nameAuthorController.text,
+                    desc: descController.text,
+                    photoUrl: photoUrlController.text,
+                    pdfUrl: pdfUrlController.text,
+                  ),
+                );
+              }
+              nameBookController.clear();
+              nameAuthorController.clear();
+              descController.clear();
+              photoUrlController.clear();
+              pdfUrlController.clear();
+              selectedCategoryId = null;
+              showToastSuccess("Thêm sách thành công!");
+            } catch (e) {
+              showToastError("Thêm sách thất bại $e");
             }
-            nameBookController.clear();
-            nameAuthorController.clear();
-            descController.clear();
-            photoUrlController.clear();
-            pdfUrlController.clear();
-            selectedCategoryId = null;
           },
           child: Ink(
             decoration: const BoxDecoration(

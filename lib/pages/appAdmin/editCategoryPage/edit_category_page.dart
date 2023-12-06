@@ -1,12 +1,39 @@
+import 'package:app_book/apps/helper/showToast.dart';
+import 'package:app_book/manage/services/firebase_service.dart';
+import 'package:app_book/models/category_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../widgets/custom_text_field.dart';
 
-class EditCategoryPage extends StatelessWidget {
-  const EditCategoryPage({super.key});
+class EditCategoryPage extends StatefulWidget {
+  const EditCategoryPage({
+    super.key,
+  });
+
+  @override
+  State<EditCategoryPage> createState() => _EditCategoryPageState();
+}
+
+class _EditCategoryPageState extends State<EditCategoryPage> {
+  String? categoryId = Get.arguments as String?;
+
+  TextEditingController nameCategoryController = TextEditingController();
+
+  void getCategoryById() async {
+    Category currentCategory =
+        await FirebaseService.getCategoryById(categoryId!);
+    nameCategoryController.text = currentCategory.nameCategory ?? "";
+  }
+
+  @override
+  void initState() {
+    getCategoryById();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController nameCategoryController = TextEditingController();
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
@@ -41,7 +68,19 @@ class EditCategoryPage extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: InkWell(
-          onTap: () {},
+          onTap: () async {
+            try {
+              await FirebaseService.updateCategory(
+                Category(
+                  nameCategory: nameCategoryController.text,
+                  id: categoryId,
+                ),
+              );
+              showToastSuccess("Sửa thành công?");
+            } catch (e) {
+              showToastError("Sửa thất bại $e");
+            }
+          },
           child: Container(
             width: double.infinity,
             height: 55,

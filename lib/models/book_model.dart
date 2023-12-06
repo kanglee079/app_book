@@ -2,7 +2,7 @@ import 'dart:convert';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class Book {
-  String? id;
+  String id;
   String? bookName;
   String? authorName;
   String? idCategory;
@@ -10,7 +10,7 @@ class Book {
   String? photoUrl;
   String? pdfUrl;
   Book({
-    this.id,
+    required this.id,
     this.bookName,
     this.authorName,
     this.idCategory,
@@ -33,7 +33,7 @@ class Book {
 
   factory Book.fromMap(Map<String, dynamic> map) {
     return Book(
-      id: map['id'] != null ? map['id'] as String : null,
+      id: map['id'] as String,
       bookName: map['bookName'] != null ? map['bookName'] as String : null,
       authorName:
           map['authorName'] != null ? map['authorName'] as String : null,
