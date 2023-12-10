@@ -65,11 +65,18 @@ class AdminBookPage extends StatelessWidget {
                       },
                       itemBuilder: (BuildContext context, int index) {
                         Book book = snapshot.data![index];
-                        return ItemBook(
-                          bookName: book.bookName,
-                          authorName: book.authorName,
-                          desc: book.desc,
-                          idBook: book.id,
+                        return InkWell(
+                          onTap: () {
+                            Get.toNamed(RouterName.pdfView,
+                                arguments: book.pdfUrl);
+                          },
+                          child: ItemBook(
+                            bookName: book.bookName,
+                            authorName: book.authorName,
+                            desc: book.desc,
+                            idBook: book.id,
+                            image: book.photoUrl,
+                          ),
                         );
                       },
                     );

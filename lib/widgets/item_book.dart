@@ -10,6 +10,7 @@ class ItemBook extends StatelessWidget {
   String? bookName;
   String? authorName;
   String? desc;
+  String? image;
 
   ItemBook({
     super.key,
@@ -17,6 +18,7 @@ class ItemBook extends StatelessWidget {
     required this.authorName,
     required this.desc,
     required this.idBook,
+    required this.image,
   });
 
   @override
@@ -58,7 +60,6 @@ class ItemBook extends StatelessWidget {
       child: Container(
         clipBehavior: Clip.hardEdge,
         width: double.infinity,
-        height: 130,
         decoration: BoxDecoration(
           color: Theme.of(context).hintColor,
           borderRadius: BorderRadius.circular(15),
@@ -68,7 +69,11 @@ class ItemBook extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Container(
-                color: Colors.amber,
+                color: Colors.redAccent,
+                child: Image.network(
+                  image ?? "",
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
             const SizedBox(width: 20),
@@ -79,15 +84,21 @@ class ItemBook extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    bookName ?? "",
+                    "Tên sách: ${bookName ?? ""}",
                     style: Theme.of(context).textTheme.titleLarge,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
+                  const SizedBox(height: 5),
                   Text(
-                    authorName ?? "",
+                    "Tên tác giả: ${authorName ?? ""}",
                     style: Theme.of(context).textTheme.titleMedium,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
+                  const SizedBox(height: 5),
                   Text(
-                    desc ?? "",
+                    "Mô tả: ${desc ?? ""}",
                     style: Theme.of(context).textTheme.titleSmall,
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,

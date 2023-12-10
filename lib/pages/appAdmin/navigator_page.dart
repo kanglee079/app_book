@@ -34,7 +34,7 @@ class _NavigatorPageState extends State<NavigatorPage> {
           Icons.add_home_outlined,
           Icons.settings,
         ],
-        activeColor: Theme.of(context).cardColor,
+        activeColor: const Color(0xFFFF9900),
         iconSize: 30,
         activeIndex: _bottomNavIndex,
         gapLocation: GapLocation.none,

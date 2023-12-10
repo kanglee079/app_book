@@ -6,7 +6,7 @@ class MyTheme {
       color: Color(0xFFB6C7D1),
     ),
     primaryColor: const Color(0xFF7986CB),
-    cardColor: const Color(0xFFFF9900),
+    cardColor: const Color(0xFFD9D9D9),
     dividerColor: const Color(0xFF9E9E9E),
     hintColor: const Color(0xFFD9D9D9),
     focusColor: const Color(0xFFB2DFDB),

@@ -10,4 +10,5 @@ class RouterName {
   static String editBook = "/editBook";
   static String editCategory = "/editCategory";
   static String setting = "/setting";
+  static String pdfView = "/pdfView";
 }

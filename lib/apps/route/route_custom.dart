@@ -9,6 +9,7 @@ import 'package:app_book/pages/appAdmin/editBookPage/edit_book_page.dart';
 import 'package:app_book/pages/appAdmin/editCategoryPage/edit_category_page.dart';
 import 'package:app_book/pages/appAdmin/loginPage/login_page.dart';
 import 'package:app_book/pages/appAdmin/navigator_page.dart';
+import 'package:app_book/pages/appAdmin/pdfViewPage/pdf_view_page.dart';
 import 'package:app_book/pages/appAdmin/settingPage/setting_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
@@ -64,6 +65,10 @@ class RouterCustom {
     GetPage(
       name: RouterName.editCategory,
       page: () => const EditCategoryPage(),
+    ),
+    GetPage(
+      name: RouterName.pdfView,
+      page: () => const PdfViewerPage(),
     ),
   ];
 }
