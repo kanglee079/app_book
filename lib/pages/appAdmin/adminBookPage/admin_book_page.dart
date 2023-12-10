@@ -52,6 +52,11 @@ class AdminBookPage extends StatelessWidget {
                     if (snapshot.hasError) {
                       return Text('Error: ${snapshot.error}');
                     }
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
                     if (!snapshot.hasData) {
                       return const CircularProgressIndicator();
                     }

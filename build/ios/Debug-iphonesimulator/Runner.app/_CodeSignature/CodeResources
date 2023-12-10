@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		1ELT2IgO12xFv6lAQ+3OAoyWaHE=
+		XtkYi13fTh5qzY4wZxmGWxMOMjA=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		H5o58DmxFCF/+5Xq3D78kvz3vIk=
+		zU+3GzcKPTDRFZ5x77kNOsduGVY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		tvgPn6nkOFO/ZoF0laYo5Pj5ggY=
+		BFXtQ0PLdqmQoU4Iy2QCkIx4KfM=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		c4jKMi1MQ9Hw0dd3/MuUGaeKYCA=
+		V72/G1zVZDaPZdQ3Ua1JQezrXHU=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -320,6 +320,18 @@
 		<data>
 		L2C41HmQ0YLkSLRR85P5y7wRhG8=
 		</data>
+		<key>Frameworks/device_info_plus.framework/Info.plist</key>
+		<data>
+		IDW/WH1p/u0fyfuAw+RpDfKrEjw=
+		</data>
+		<key>Frameworks/device_info_plus.framework/_CodeSignature/CodeResources</key>
+		<data>
+		MZ66lsNPzmGR4bjRcdxeRdNaZeo=
+		</data>
+		<key>Frameworks/device_info_plus.framework/device_info_plus</key>
+		<data>
+		s1+Ye0nV6T2mELpaK65RnmgXehg=
+		</data>
 		<key>Frameworks/flutter_pdfview.framework/Info.plist</key>
 		<data>
 		/zbvFYi27eDpQxY8H/t84eC3u7Y=
@@ -354,7 +366,7 @@
 		</data>
 		<key>Frameworks/grpc.framework/grpc</key>
 		<data>
-		jjPSNGw84uNRIYS/Ndmtp9gxSs0=
+		NMaqIMMf3LajSbfXPKo8xTOhJ1k=
 		</data>
 		<key>Frameworks/grpcpp.framework/Info.plist</key>
 		<data>
@@ -435,6 +447,30 @@
 		<key>Frameworks/shared_preferences_foundation.framework/shared_preferences_foundation</key>
 		<data>
 		5PjQ4NQbz3Z09X+wEdIGbW6KvhM=
+		</data>
+		<key>Frameworks/syncfusion_flutter_pdfviewer.framework/Info.plist</key>
+		<data>
+		B8hneM1UveFVqWE+uUQ7lcR5qjw=
+		</data>
+		<key>Frameworks/syncfusion_flutter_pdfviewer.framework/_CodeSignature/CodeResources</key>
+		<data>
+		lHQ2MoDQWY606Bq1YWCNT8aicy4=
+		</data>
+		<key>Frameworks/syncfusion_flutter_pdfviewer.framework/syncfusion_flutter_pdfviewer</key>
+		<data>
+		xVeLJD4IpM7oqCkCgcDbGDpJwa8=
+		</data>
+		<key>Frameworks/url_launcher_ios.framework/Info.plist</key>
+		<data>
+		MLKOY1seUZlL7augk9JOQUyKN+s=
+		</data>
+		<key>Frameworks/url_launcher_ios.framework/_CodeSignature/CodeResources</key>
+		<data>
+		lNmNrpe6gapCL3LbGH+r1LMMoCQ=
+		</data>
+		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios</key>
+		<data>
+		7WqolAF/4CeXfdholLLo0huTFKg=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -521,7 +557,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3nz1rpNgXZwA6untgVZZ1632sYCR4jOUi2kMLHiy5m4=
+			h+cRTp5Kr5z8a4G/NrRoqqGnr4ge5lmBoecD5gpDtVQ=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -535,7 +571,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			RWGmRxXmDoO6MxXrG0JjGGLmXbYLF4NpmtJM37I1jdw=
+			XzLqrNvANrW1Z19tx6/xsMjE5KsQjxcVQyMxj1wbPwU=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
@@ -563,7 +599,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CXCyRpdUCO0eE2rZgLPpje2W8I69E37JaQhWKEX1/ow=
+			UEgbXgh4vUDhB+jScH6jNjMYSWVR4H+MAwGdL4v+Rec=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -584,7 +620,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			vSkhyzcfHh3bUy2GZJNU123kJRSXHmWrbPv0rSa1Chc=
+			P1gOcNOLsDWpmj6z39+OFsttLkuJNKmEsVf35iRx/IA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -1000,6 +1036,27 @@
 			vUOHN/oomCcmV2YgeGSIAJbyXN+k270CwKt6ANuQats=
 			</data>
 		</dict>
+		<key>Frameworks/device_info_plus.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			mSBRjm3l+m4YvwZrPw/34MBud/i3a5KkpRJEKJTwkUI=
+			</data>
+		</dict>
+		<key>Frameworks/device_info_plus.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Hz5YZLpfib/f8EM1/FVOshhxVoznLhs8JIX7Z5ou1R0=
+			</data>
+		</dict>
+		<key>Frameworks/device_info_plus.framework/device_info_plus</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			5NIgKaBe3RS300ng6cofRgr0gk2s2orXh6ILUPe+dN8=
+			</data>
+		</dict>
 		<key>Frameworks/flutter_pdfview.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
@@ -1060,7 +1117,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OR0/xmXUBQQHlkr6hGGV7Dl11kBws15jxifY/oYF1kE=
+			KRuHfuOqPMS4hbEzHUMl7WRtHWpM1Nb7UCtBcx86GGo=
 			</data>
 		</dict>
 		<key>Frameworks/grpcpp.framework/Info.plist</key>
@@ -1201,6 +1258,48 @@
 			<key>hash2</key>
 			<data>
 			TysghBJReQlT3Vx/waZKSAxZIQGI+L+D0zFrOBUSee0=
+			</data>
+		</dict>
+		<key>Frameworks/syncfusion_flutter_pdfviewer.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ljkTsvWpAADmvVYFYZBia+eFZu9BbOa1ujlvh/modfY=
+			</data>
+		</dict>
+		<key>Frameworks/syncfusion_flutter_pdfviewer.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			eoM94/h6IeiLo9omBT1eilqmJaf92alfGd/v7Nn6t+4=
+			</data>
+		</dict>
+		<key>Frameworks/syncfusion_flutter_pdfviewer.framework/syncfusion_flutter_pdfviewer</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xp5vb4S/pk9Y/YxAUFo3eVtmsXnHeJa6Pm4nKKFCc8g=
+			</data>
+		</dict>
+		<key>Frameworks/url_launcher_ios.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			1Dm3gaVnAhN4eh96ZU6GUlv8q0fTCs9+LG/Hh9kqweU=
+			</data>
+		</dict>
+		<key>Frameworks/url_launcher_ios.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			BE+IuM6MFSO0V9VyY40bmApw4++aJEn1cIt5cE58dXk=
+			</data>
+		</dict>
+		<key>Frameworks/url_launcher_ios.framework/url_launcher_ios</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			MXr1/7lpdDPsdhm4Uyz1D3EqsgBI/MbxGlDMZByrJlw=
 			</data>
 		</dict>
 	</dict>

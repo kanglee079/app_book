@@ -69,6 +69,7 @@ class ItemBook extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Container(
+                height: 195,
                 color: Colors.redAccent,
                 child: Image.network(
                   image ?? "",
