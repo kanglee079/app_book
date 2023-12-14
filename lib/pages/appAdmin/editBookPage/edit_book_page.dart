@@ -1,5 +1,6 @@
 import 'package:app_book/apps/helper/showToast.dart';
-import 'package:app_book/manage/services/firebase_service.dart';
+import 'package:app_book/manage/controllers/book_controller.dart';
+import 'package:app_book/manage/controllers/category_controller.dart';
 import 'package:app_book/models/book_model.dart';
 import 'package:app_book/models/category_model.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -22,6 +23,9 @@ class _EditBookPageState extends State<EditBookPage> {
   String? idBook = Get.arguments as String?;
   String? selectedCategoryId;
 
+  final controllerBook = Get.find<BookController>();
+  final controllerCategory = Get.put(CategoryController());
+
   TextEditingController nameBookController = TextEditingController();
   TextEditingController nameAuthorController = TextEditingController();
   TextEditingController descController = TextEditingController();
@@ -29,7 +33,10 @@ class _EditBookPageState extends State<EditBookPage> {
   TextEditingController pdfUrlController = TextEditingController();
 
   void loadBookData() async {
-    Book currentBook = await FirebaseService.getBookById(idBook!);
+    Book currentBook = controllerBook.state.listBook.firstWhere(
+      (book) => book.id == idBook,
+    );
+
     nameBookController.text = currentBook.bookName ?? '';
     nameAuthorController.text = currentBook.authorName ?? '';
     descController.text = currentBook.desc ?? '';
@@ -72,52 +79,28 @@ class _EditBookPageState extends State<EditBookPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              StreamBuilder<List<Category>>(
-                stream: FirebaseService.getAllCategories(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<List<Category>> snapshot) {
-                  if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  }
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.none:
-                      return const Text('Chưa kết nối.');
-                    case ConnectionState.waiting:
-                      return ItemDropdown(dropDown: DropdownSearch<String>());
-                    case ConnectionState.active:
-                    case ConnectionState.done:
-                      if (snapshot.hasData) {
-                        List<Category> categories = snapshot.data!;
-                        return ItemDropdown(
-                          dropDown: DropdownSearch<Category>(
-                            popupProps: const PopupProps.menu(
-                              showSelectedItems: true,
-                            ),
-                            items: categories,
-                            itemAsString: (Category? category) =>
-                                category?.nameCategory ?? '',
-                            compareFn: (Category? a, Category? b) =>
-                                a?.id == b?.id,
-                            dropdownDecoratorProps: DropDownDecoratorProps(
-                              dropdownSearchDecoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                  borderSide:
-                                      const BorderSide(color: Colors.grey),
-                                ),
-                              ),
-                            ),
-                            onChanged: (Category? newValue) {
-                              selectedCategoryId = newValue?.id;
-                            },
-                            selectedItem: null,
-                          ),
-                        );
-                      } else {
-                        return const Text('Không có dữ liệu.');
-                      }
-                  }
-                },
+              ItemDropdown(
+                dropDown: DropdownSearch<Category>(
+                  popupProps: const PopupProps.menu(
+                    showSelectedItems: true,
+                  ),
+                  items: controllerCategory.state.listCategory,
+                  itemAsString: (Category? category) =>
+                      category?.nameCategory ?? '',
+                  compareFn: (Category? a, Category? b) => a?.id == b?.id,
+                  dropdownDecoratorProps: DropDownDecoratorProps(
+                    dropdownSearchDecoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: const BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
+                  onChanged: (Category? newValue) {
+                    selectedCategoryId = newValue?.id;
+                  },
+                  selectedItem: null,
+                ),
               ),
               const SizedBox(height: 20),
               CustomTextField(
@@ -155,15 +138,15 @@ class _EditBookPageState extends State<EditBookPage> {
         bottomNavigationBar: InkWell(
           onTap: () async {
             try {
-              await FirebaseService.updateBook(
+              controllerBook.updateBook(
+                idBook!,
                 Book(
-                  idCategory: selectedCategoryId,
+                  id: idBook!,
                   bookName: nameBookController.text,
                   authorName: nameAuthorController.text,
                   desc: descController.text,
                   photoUrl: photoUrlController.text,
                   pdfUrl: pdfUrlController.text,
-                  id: idBook!,
                 ),
               );
               showToastSuccess("Cập nhật sách thành công!");

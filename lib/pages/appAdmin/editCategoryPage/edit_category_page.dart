@@ -1,5 +1,5 @@
 import 'package:app_book/apps/helper/showToast.dart';
-import 'package:app_book/manage/services/firebase_service.dart';
+import 'package:app_book/manage/controllers/category_controller.dart';
 import 'package:app_book/models/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,12 +18,15 @@ class EditCategoryPage extends StatefulWidget {
 class _EditCategoryPageState extends State<EditCategoryPage> {
   String? categoryId = Get.arguments as String?;
 
+  final controllerCategory = Get.find<CategoryController>();
+
   TextEditingController nameCategoryController = TextEditingController();
 
   void getCategoryById() async {
-    Category currentCategory =
-        await FirebaseService.getCategoryById(categoryId!);
-    nameCategoryController.text = currentCategory.nameCategory ?? "";
+    Category categoryToEdit = controllerCategory.state.listCategory.firstWhere(
+      (category) => category.id == categoryId,
+    );
+    nameCategoryController.text = categoryToEdit.nameCategory ?? "";
   }
 
   @override
@@ -68,14 +71,13 @@ class _EditCategoryPageState extends State<EditCategoryPage> {
           ),
         ),
         bottomNavigationBar: InkWell(
-          onTap: () async {
+          onTap: () {
             try {
-              await FirebaseService.updateCategory(
-                Category(
-                  nameCategory: nameCategoryController.text,
-                  id: categoryId,
-                ),
-              );
+              controllerCategory.updateCategory(
+                  categoryId!,
+                  Category(
+                      id: categoryId,
+                      nameCategory: nameCategoryController.text));
               showToastSuccess("Sửa thành công?");
             } catch (e) {
               showToastError("Sửa thất bại $e");
@@ -83,7 +85,7 @@ class _EditCategoryPageState extends State<EditCategoryPage> {
           },
           child: Container(
             width: double.infinity,
-            height: 55,
+            height: 60,
             decoration: const BoxDecoration(
               color: Colors.grey,
               borderRadius: BorderRadius.only(

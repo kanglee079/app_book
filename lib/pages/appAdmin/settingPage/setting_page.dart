@@ -38,21 +38,20 @@ class SettingPage extends StatelessWidget {
           const Text("Admin Name"),
           ItemAdminPage(
             nameItem: "Tài Khoản",
-            ontap: () {},
           ),
           ItemAdminPage(
             nameItem: "Ngôn Ngữ",
-            ontap: () {},
           ),
           ItemAdminPage(
             nameItem: "Theme",
-            ontap: () {},
           ),
-          ItemAdminPage(
-            nameItem: "Đăng Xuất",
-            ontap: () {
+          InkWell(
+            onTap: () {
               UserStore.to.logout();
             },
+            child: ItemAdminPage(
+              nameItem: "Đăng Xuất",
+            ),
           ),
         ],
       ),

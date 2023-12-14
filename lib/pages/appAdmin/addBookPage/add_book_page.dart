@@ -1,11 +1,11 @@
 import 'package:app_book/apps/helper/showToast.dart';
-import 'package:app_book/manage/services/firebase_service.dart';
-import 'package:app_book/models/book_model.dart';
+import 'package:app_book/manage/controllers/book_controller.dart';
 import 'package:app_book/models/category_model.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../../apps/helper/randomId.dart';
+import '../../../manage/controllers/category_controller.dart';
 import '../../../widgets/custom_text_field.dart';
 import '../../../widgets/item_dropdown.dart';
 
@@ -23,6 +23,9 @@ class _AddBookPageState extends State<AddBookPage> {
   TextEditingController descController = TextEditingController();
   TextEditingController photoUrlController = TextEditingController();
   TextEditingController pdfUrlController = TextEditingController();
+
+  final controllerBook = Get.find<BookController>();
+  final controllerCategory = Get.put(CategoryController());
 
   @override
   Widget build(BuildContext context) {
@@ -52,52 +55,28 @@ class _AddBookPageState extends State<AddBookPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                StreamBuilder<List<Category>>(
-                  stream: FirebaseService.getAllCategories(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<List<Category>> snapshot) {
-                    if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    }
-                    switch (snapshot.connectionState) {
-                      case ConnectionState.none:
-                        return const Text('Chưa kết nối.');
-                      case ConnectionState.waiting:
-                        return ItemDropdown(dropDown: DropdownSearch<String>());
-                      case ConnectionState.active:
-                      case ConnectionState.done:
-                        if (snapshot.hasData) {
-                          List<Category> categories = snapshot.data!;
-                          return ItemDropdown(
-                            dropDown: DropdownSearch<Category>(
-                              popupProps: const PopupProps.menu(
-                                showSelectedItems: true,
-                              ),
-                              items: categories,
-                              itemAsString: (Category? category) =>
-                                  category?.nameCategory ?? '',
-                              compareFn: (Category? a, Category? b) =>
-                                  a?.id == b?.id,
-                              dropdownDecoratorProps: DropDownDecoratorProps(
-                                dropdownSearchDecoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide:
-                                        const BorderSide(color: Colors.grey),
-                                  ),
-                                ),
-                              ),
-                              onChanged: (Category? newValue) {
-                                selectedCategoryId = newValue?.id;
-                              },
-                              selectedItem: null,
-                            ),
-                          );
-                        } else {
-                          return const Text('Không có dữ liệu.');
-                        }
-                    }
-                  },
+                ItemDropdown(
+                  dropDown: DropdownSearch<Category>(
+                    popupProps: const PopupProps.menu(
+                      showSelectedItems: true,
+                    ),
+                    items: controllerCategory.state.listCategory,
+                    itemAsString: (Category? category) =>
+                        category?.nameCategory ?? '',
+                    compareFn: (Category? a, Category? b) => a?.id == b?.id,
+                    dropdownDecoratorProps: DropDownDecoratorProps(
+                      dropdownSearchDecoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: const BorderSide(color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                    onChanged: (Category? newValue) {
+                      selectedCategoryId = newValue?.id;
+                    },
+                    selectedItem: null,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 CustomTextField(
@@ -136,20 +115,14 @@ class _AddBookPageState extends State<AddBookPage> {
         bottomNavigationBar: InkWell(
           onTap: () {
             try {
-              var rdId = generateRandomIdBook();
-              if (selectedCategoryId != null) {
-                FirebaseService.addBook(
-                  Book(
-                    id: rdId,
-                    idCategory: selectedCategoryId,
-                    bookName: nameBookController.text,
-                    authorName: nameAuthorController.text,
-                    desc: descController.text,
-                    photoUrl: photoUrlController.text,
-                    pdfUrl: pdfUrlController.text,
-                  ),
-                );
-              }
+              controllerBook.addBook(
+                  nameBookController.text,
+                  nameAuthorController.text,
+                  selectedCategoryId,
+                  descController.text,
+                  photoUrlController.text,
+                  pdfUrlController.text);
+
               nameBookController.clear();
               nameAuthorController.clear();
               descController.clear();

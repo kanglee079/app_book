@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 
 class ItemAdminPage extends StatelessWidget {
   String nameItem;
-  Function() ontap;
   ItemAdminPage({
     super.key,
     required this.nameItem,
-    required this.ontap,
   });
 
   @override
@@ -25,9 +23,8 @@ class ItemAdminPage extends StatelessWidget {
             Expanded(
               child: Text(nameItem),
             ),
-            IconButton(
-              onPressed: ontap,
-              icon: const Icon(Icons.arrow_forward_ios),
+            const Icon(
+              Icons.arrow_forward_ios,
             ),
             const SizedBox(width: 20),
           ],

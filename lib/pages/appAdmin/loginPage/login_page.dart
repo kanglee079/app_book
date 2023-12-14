@@ -1,6 +1,7 @@
 import 'package:app_book/manage/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:sign_in_button/sign_in_button.dart';
 
 import '../../../widgets/button_custom.dart';
 import '../../../widgets/form_login_widget.dart';
@@ -72,6 +73,15 @@ class LoginPage extends GetView<LoginController> {
                           textStyle: Theme.of(context).textTheme.bodyMedium,
                           textButton: 'LOGIN',
                         ),
+                        const SizedBox(height: 25),
+                        SignInButton(
+                          Buttons.google,
+                          onPressed: () {},
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 100,
+                            vertical: 10,
+                          ),
+                        )
                       ],
                     ),
                   ),

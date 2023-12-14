@@ -1,15 +1,17 @@
 import 'package:app_book/apps/helper/showToast.dart';
-import 'package:app_book/manage/services/firebase_service.dart';
-import 'package:app_book/models/category_model.dart';
+import 'package:app_book/manage/controllers/category_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../widgets/custom_text_field.dart';
 
 class AddCategoryPage extends StatelessWidget {
   const AddCategoryPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     TextEditingController nameCategoryController = TextEditingController();
+    final categoryController = Get.find<CategoryController>();
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
@@ -46,8 +48,7 @@ class AddCategoryPage extends StatelessWidget {
         bottomNavigationBar: InkWell(
           onTap: () {
             if (nameCategoryController.text.isNotEmpty) {
-              FirebaseService.addCategory(
-                  Category(nameCategory: nameCategoryController.text));
+              categoryController.addCategory(nameCategoryController.text);
             }
             nameCategoryController.clear();
             showToastSuccess("Thêm thể loại thành công!");

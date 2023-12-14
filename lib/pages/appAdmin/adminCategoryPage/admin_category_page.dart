@@ -1,13 +1,10 @@
-import 'package:app_book/apps/route/route_name.dart';
+import 'package:app_book/manage/controllers/category_controller.dart';
 import 'package:app_book/models/category_model.dart';
-import 'package:app_book/widgets/search_book.dart';
+import 'package:app_book/widgets/item_category.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../manage/services/firebase_service.dart';
-import '../../../widgets/item_category.dart';
-
-class AdminCategoryPage extends StatelessWidget {
+class AdminCategoryPage extends GetView<CategoryController> {
   const AdminCategoryPage({super.key});
 
   @override
@@ -32,68 +29,26 @@ class AdminCategoryPage extends StatelessWidget {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SearchBook(
-                  contentSearch: "Search Your Category",
-                  icon: Icons.search,
-                ),
-                const SizedBox(height: 15),
-                Text(
-                  "Danh sách thể loại",
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                const SizedBox(height: 10),
-                StreamBuilder<List<Category>>(
-                  stream: FirebaseService.getAllCategories(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<List<Category>> snapshot) {
-                    if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    }
-                    switch (snapshot.connectionState) {
-                      case ConnectionState.none:
-                        return const Text('Chưa kết nối.');
-                      case ConnectionState.waiting:
-                        return const CircularProgressIndicator();
-                      case ConnectionState.active:
-                      case ConnectionState.done:
-                        if (snapshot.hasData) {
-                          List<Category> categories = snapshot.data!;
-                          return ListView.separated(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: categories.length,
-                            separatorBuilder:
-                                (BuildContext context, int index) {
-                              return const Divider(
-                                  height: 15, color: Colors.white);
-                            },
-                            itemBuilder: (BuildContext context, int index) {
-                              return ItemCategory(
-                                index: index,
-                                nameCategory: categories[index].nameCategory,
-                                idCategory: categories[index].id,
-                              );
-                            },
-                          );
-                        } else {
-                          return const Text('Không có dữ liệu.');
-                        }
-                    }
-                  },
-                ),
-              ],
+          padding: const EdgeInsets.all(12.0),
+          child: Obx(
+            () => ListView.separated(
+              itemCount: controller.state.listCategory.length,
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(height: 20);
+              },
+              itemBuilder: (BuildContext context, int index) {
+                List<Category> listCategory = controller.state.listCategory;
+                return ItemCategory(
+                  index: index,
+                  nameCategory: listCategory[index].nameCategory,
+                  idCategory: listCategory[index].id,
+                );
+              },
             ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Get.toNamed(RouterName.addCaterogy);
-          },
+          onPressed: controller.transToAddCategory,
           backgroundColor: Colors.redAccent,
           child: const Icon(Icons.add),
         ),

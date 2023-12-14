@@ -45,6 +45,8 @@ dependencies:
   cloud_firestore: ^4.13.3
   fluttertoast: ^8.2.4
   syncfusion_flutter_pdfviewer: ^23.2.7
+  uuid: ^4.2.1
+  sign_in_button: ^3.2.0
 
 dev_dependencies:
   flutter_test:

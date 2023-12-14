@@ -1,6 +1,4 @@
-import 'package:app_book/apps/helper/showToast.dart';
-import 'package:app_book/apps/route/route_name.dart';
-import 'package:app_book/manage/services/firebase_service.dart';
+import 'package:app_book/manage/controllers/category_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
@@ -9,6 +7,7 @@ class ItemCategory extends StatelessWidget {
   String? idCategory;
   String? nameCategory;
   int index;
+
   ItemCategory({
     super.key,
     required this.index,
@@ -18,6 +17,7 @@ class ItemCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controllerCategory = Get.find<CategoryController>();
     return Slidable(
       key: const ValueKey(0),
       endActionPane: ActionPane(
@@ -26,7 +26,7 @@ class ItemCategory extends StatelessWidget {
           const SizedBox(width: 2),
           SlidableAction(
             onPressed: (context) =>
-                Get.toNamed(RouterName.editCategory, arguments: idCategory),
+                controllerCategory.transToEditCategory(idCategory!),
             backgroundColor: Colors.grey,
             foregroundColor: Colors.white,
             borderRadius: BorderRadius.circular(15),
@@ -35,14 +35,8 @@ class ItemCategory extends StatelessWidget {
           ),
           const SizedBox(width: 2),
           SlidableAction(
-            onPressed: (context) {
-              try {
-                FirebaseService.deleteCategory(idCategory!);
-                showToastSuccess("Xoá thành công!");
-              } catch (e) {
-                showToastError("Xoá thất bại $e");
-              }
-            },
+            onPressed: (context) =>
+                controllerCategory.deleteCategory(idCategory!),
             backgroundColor: Colors.grey,
             foregroundColor: Colors.white,
             borderRadius: BorderRadius.circular(15),
@@ -55,7 +49,7 @@ class ItemCategory extends StatelessWidget {
         width: double.infinity,
         height: 50,
         decoration: BoxDecoration(
-          color: Colors.primaries[index],
+          color: Colors.primaries[index % 12],
           borderRadius: BorderRadius.circular(18),
         ),
         child: Center(

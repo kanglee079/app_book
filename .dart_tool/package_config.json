@@ -170,6 +170,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/font_awesome_flutter-10.6.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "get",
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/get-4.6.6",
       "packageUri": "lib/",
@@ -324,6 +330,12 @@
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.3.2",
       "packageUri": "lib/",
       "languageVersion": "2.19"
+    },
+    {
+      "name": "sign_in_button",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/sign_in_button-3.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "sky_engine",
@@ -524,7 +536,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2023-12-10T14:09:48.341242Z",
+  "generated": "2023-12-14T13:23:20.345758Z",
   "generator": "pub",
   "generatorVersion": "3.2.3"
 }

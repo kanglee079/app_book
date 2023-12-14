@@ -1,6 +1,5 @@
 import 'package:app_book/apps/helper/showToast.dart';
-import 'package:app_book/apps/route/route_name.dart';
-import 'package:app_book/manage/services/firebase_service.dart';
+import 'package:app_book/manage/controllers/book_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
@@ -23,6 +22,7 @@ class ItemBook extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controllerBook = Get.find<BookController>();
     return Slidable(
       key: const ValueKey(0),
       endActionPane: ActionPane(
@@ -31,7 +31,7 @@ class ItemBook extends StatelessWidget {
           const SizedBox(width: 2),
           SlidableAction(
             onPressed: (context) {
-              Get.toNamed(RouterName.editBook, arguments: idBook);
+              controllerBook.transToEditBook(idBook);
             },
             backgroundColor: Colors.grey,
             foregroundColor: Colors.white,
@@ -43,7 +43,7 @@ class ItemBook extends StatelessWidget {
           SlidableAction(
             onPressed: (context) {
               try {
-                FirebaseService.deleteBook(idBook);
+                controllerBook.deleteBook(idBook);
                 showToastSuccess("Xoá thành công!");
               } catch (e) {
                 showToastError("Xoá thất bại do $e");

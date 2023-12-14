@@ -1,3 +1,5 @@
+import 'package:app_book/manage/bindings/book_binding.dart';
+import 'package:app_book/manage/bindings/category_binding.dart';
 import 'package:app_book/manage/bindings/login_binding.dart';
 import 'package:app_book/manage/middlewares/auth_middleware.dart';
 import 'package:app_book/pages/appAdmin/addBookPage/add_book_page.dart';
@@ -45,10 +47,12 @@ class RouterCustom {
     GetPage(
       name: RouterName.adminBook,
       page: () => const AdminBookPage(),
+      binding: BookBinding(),
     ),
     GetPage(
       name: RouterName.adminCategory,
       page: () => const AdminCategoryPage(),
+      binding: CategoryBinding(),
     ),
     GetPage(
       name: RouterName.addBook,

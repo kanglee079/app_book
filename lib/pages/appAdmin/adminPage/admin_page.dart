@@ -25,21 +25,27 @@ class AdminPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          ItemAdminPage(
-            nameItem: "Thể loại",
-            ontap: () {
+          InkWell(
+            onTap: () {
               Get.toNamed(RouterName.adminCategory);
             },
+            child: ItemAdminPage(
+              nameItem: "Thể loại",
+            ),
           ),
-          ItemAdminPage(
-            nameItem: "Sách",
-            ontap: () {
+          InkWell(
+            onTap: () {
               Get.toNamed(RouterName.adminBook);
             },
+            child: ItemAdminPage(
+              nameItem: "Sách",
+            ),
           ),
-          ItemAdminPage(
-            nameItem: "Người dùng",
-            ontap: () {},
+          InkWell(
+            onTap: () {},
+            child: ItemAdminPage(
+              nameItem: "Người dùng",
+            ),
           ),
         ],
       ),

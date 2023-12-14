@@ -25,12 +25,19 @@ class FirebaseService {
 
   // thêm category
   static Future<void> addCategory(Category category) async {
-    int id = await getNextCategoryId();
-    category.id = id.toString();
-    await FirebaseFirestore.instance
-        .collection('categories')
-        .doc(category.id)
-        .set(category.toMap());
+    // int id = await getNextCategoryId();
+    // category.id = id.toString();
+    // await FirebaseFirestore.instance
+    //     .collection('categories')
+    //     .doc(category.id)
+    //     .set(category.toMap());
+
+    FirebaseFirestore.instance
+        .collection("categories")
+        .withConverter(
+            fromFirestore: (snapshot, _) => Category.fromMap(snapshot.data()!),
+            toFirestore: (Category cate, _) => cate.toMap())
+        .add(category);
   }
 
   // lấy toàn bộ category
