@@ -2,16 +2,34 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "_fe_analyzer_shared",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-61.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "_flutterfire_internals",
-      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.14",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/_flutterfire_internals-1.3.16",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "analyzer",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/analyzer-5.13.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "animated_bottom_navigation_bar",
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/animated_bottom_navigation_bar-1.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "args",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/args-2.4.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "async",
@@ -26,10 +44,34 @@
       "languageVersion": "2.17"
     },
     {
+      "name": "cached_network_image",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/cached_network_image-3.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "cached_network_image_platform_interface",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/cached_network_image_platform_interface-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "cached_network_image_web",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/cached_network_image_web-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "characters",
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/characters-1.3.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "chat_gpt_sdk",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/chat_gpt_sdk-2.2.5",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
     },
     {
       "name": "clock",
@@ -74,10 +116,22 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "csslib",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/csslib-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "cupertino_icons",
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.6",
       "packageUri": "lib/",
       "languageVersion": "2.19"
+    },
+    {
+      "name": "dash_chat_2",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/dash_chat_2-0.0.19",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "device_info_plus",
@@ -90,6 +144,12 @@
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/device_info_plus_platform_interface-7.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "dio",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/dio-5.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
     },
     {
       "name": "dropdown_search",
@@ -116,8 +176,26 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "firebase_auth",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/firebase_auth-4.15.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "firebase_auth_platform_interface",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/firebase_auth_platform_interface-7.0.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "firebase_auth_web",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/firebase_auth_web-5.8.12",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "firebase_core",
-      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/firebase_core-2.24.0",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/firebase_core-2.24.2",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -129,7 +207,7 @@
     },
     {
       "name": "firebase_core_web",
-      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/firebase_core_web-2.9.0",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/firebase_core_web-2.10.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -140,16 +218,34 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "flutter_cache_manager",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/flutter_cache_manager-3.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/flutter_lints-2.0.3",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
     {
+      "name": "flutter_parsed_text",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/flutter_parsed_text-2.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_slidable",
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/flutter_slidable-3.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.17"
+    },
+    {
+      "name": "flutter_staggered_grid_view",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/flutter_staggered_grid_view-0.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "flutter_test",
@@ -182,6 +278,54 @@
       "languageVersion": "2.15"
     },
     {
+      "name": "glob",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/glob-2.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "google_identity_services_web",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/google_identity_services_web-0.3.0+2",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "google_sign_in",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/google_sign_in-6.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "google_sign_in_android",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/google_sign_in_android-6.1.20",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "google_sign_in_ios",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/google_sign_in_ios-5.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "google_sign_in_platform_interface",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/google_sign_in_platform_interface-2.4.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "google_sign_in_web",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/google_sign_in_web-0.12.3+1",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "html",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/html-0.15.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "http",
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/http-1.1.2",
       "packageUri": "lib/",
@@ -206,6 +350,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "like_button",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/like_button-2.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "lints",
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/lints-2.1.1",
       "packageUri": "lib/",
@@ -226,6 +376,18 @@
     {
       "name": "meta",
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/meta-1.10.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "octo_image",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/octo_image-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "package_config",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/package_config-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -278,6 +440,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "pigeon",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/pigeon-11.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "platform",
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/platform-3.1.3",
       "packageUri": "lib/",
@@ -288,6 +456,18 @@
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.7",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "pub_semver",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/pub_semver-2.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
+      "name": "rxdart",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/rxdart-0.27.7",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "shared_preferences",
@@ -356,6 +536,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "sqflite",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/sqflite-2.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "sqflite_common",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/sqflite_common-2.5.0+2",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "stack_trace",
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/stack_trace-1.11.1",
       "packageUri": "lib/",
@@ -420,6 +612,12 @@
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/syncfusion_pdfviewer_windows-23.2.7",
       "packageUri": "lib/",
       "languageVersion": "2.17"
+    },
+    {
+      "name": "synchronized",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/synchronized-3.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "term_glyph",
@@ -500,6 +698,42 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "video_player",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/video_player-2.8.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
+      "name": "video_player_android",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/video_player_android-2.4.10",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "video_player_avfoundation",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/video_player_avfoundation-2.5.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "video_player_platform_interface",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/video_player_platform_interface-6.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "video_player_web",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/video_player_web-2.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
+      "name": "watcher",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/watcher-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "web",
       "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/web-0.3.0",
       "packageUri": "lib/",
@@ -530,13 +764,19 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "yaml",
+      "rootUri": "file:///Users/vuonghykhang/.pub-cache/hosted/pub.dev/yaml-3.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "app_book",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2023-12-14T13:23:20.345758Z",
+  "generated": "2023-12-17T07:13:05.838274Z",
   "generator": "pub",
   "generatorVersion": "3.2.3"
 }

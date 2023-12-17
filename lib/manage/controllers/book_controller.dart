@@ -37,12 +37,25 @@ class BookController extends GetxController {
     Get.toNamed(RouterName.pdfView, arguments: pdfUrl);
   }
 
+  void transToDetailBook(Book book) {
+    Get.toNamed(
+      RouterName.detailBook,
+      arguments: book,
+    );
+  }
+
   void transToAddBook() {
     Get.toNamed(RouterName.addBook);
   }
 
   void transToEditBook(String idBook) {
     Get.toNamed(RouterName.editBook, arguments: idBook);
+  }
+
+  List<Book> getBooksByCategory(String idCategory) {
+    return state.listBook
+        .where((book) => book.idCategory == idCategory)
+        .toList();
   }
 
   void addBook(

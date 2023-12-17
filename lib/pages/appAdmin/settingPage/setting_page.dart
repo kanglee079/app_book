@@ -1,7 +1,7 @@
 import 'package:app_book/manage/stores/user_store.dart';
 import 'package:flutter/material.dart';
 
-import '../../../widgets/item_admin_page.dart';
+import '../../../widgets/item_setting_page.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({super.key});
@@ -38,20 +38,21 @@ class SettingPage extends StatelessWidget {
           const Text("Admin Name"),
           ItemAdminPage(
             nameItem: "Tài Khoản",
+            ontap: () {},
           ),
           ItemAdminPage(
             nameItem: "Ngôn Ngữ",
+            ontap: () {},
           ),
           ItemAdminPage(
             nameItem: "Theme",
+            ontap: () {},
           ),
-          InkWell(
-            onTap: () {
+          ItemAdminPage(
+            nameItem: "Đăng Xuất",
+            ontap: () {
               UserStore.to.logout();
             },
-            child: ItemAdminPage(
-              nameItem: "Đăng Xuất",
-            ),
           ),
         ],
       ),

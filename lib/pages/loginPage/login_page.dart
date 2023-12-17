@@ -1,10 +1,11 @@
+import 'package:app_book/apps/route/route_name.dart';
 import 'package:app_book/manage/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:get/get.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
-import '../../../widgets/button_custom.dart';
-import '../../../widgets/form_login_widget.dart';
+import '../../widgets/button_custom.dart';
+import '../../widgets/form_login_widget.dart';
 
 class LoginPage extends GetView<LoginController> {
   const LoginPage({super.key});
@@ -27,7 +28,7 @@ class LoginPage extends GetView<LoginController> {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Text(
-                  "Book Admin App",
+                  "Book App",
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
@@ -76,7 +77,13 @@ class LoginPage extends GetView<LoginController> {
                         const SizedBox(height: 25),
                         SignInButton(
                           Buttons.google,
-                          onPressed: () {},
+                          onPressed: () {
+                            controller.loginWithGoogle().then((userCredential) {
+                              Get.offAndToNamed(RouterName.nav);
+                            }).catchError((error) {
+                              print("Lỗi Google");
+                            });
+                          },
                           padding: const EdgeInsets.symmetric(
                             horizontal: 100,
                             vertical: 10,

@@ -31,7 +31,7 @@ class MyTheme {
             fontSize: 14,
           ),
           titleMedium: const TextStyle(
-            color: Color(0xFF212121),
+            color: Colors.grey,
             fontSize: 16,
           ),
           titleLarge: const TextStyle(

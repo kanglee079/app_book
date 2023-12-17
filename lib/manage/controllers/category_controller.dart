@@ -42,6 +42,10 @@ class CategoryController extends GetxController {
     Get.toNamed(RouterName.editCategory, arguments: idCategory);
   }
 
+  void transToBookWithCategory(Category category) {
+    Get.toNamed(RouterName.userBookWithCategory, arguments: category);
+  }
+
   void addCategory(String nameCategory) {
     Category data =
         Category(nameCategory: nameCategory, id: generateRandomIdBook());
@@ -73,6 +77,11 @@ class CategoryController extends GetxController {
             toFirestore: (Category cate, _) => cate.toMap())
         .doc(idCategory)
         .update(category.toMap());
+  }
+
+  Category? getCategoryById(String idCategory) {
+    return state.listCategory
+        .firstWhereOrNull((category) => category.id == idCategory);
   }
 
   @override

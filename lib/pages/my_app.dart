@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../apps/route/route_custom.dart';
-import '../../apps/route/route_name.dart';
-import '../../apps/theme/theme.dart';
-import '../../manage/controllers/theme_controller.dart';
+import '../apps/route/route_custom.dart';
+import '../apps/route/route_name.dart';
+import '../apps/theme/theme.dart';
+import '../manage/controllers/theme_controller.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

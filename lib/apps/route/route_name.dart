@@ -11,4 +11,10 @@ class RouterName {
   static String editCategory = "/editCategory";
   static String setting = "/setting";
   static String pdfView = "/pdfView";
+  //----------------------- User
+  static String navUser = "/navUser";
+  static String userHome = "/userHome";
+  static String detailBook = "/detailBook";
+  static String userCategories = "/userCategories";
+  static String userBookWithCategory = "/userBookWithCategory";
 }

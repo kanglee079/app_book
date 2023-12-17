@@ -1,5 +1,6 @@
 import 'package:app_book/manage/bindings/book_binding.dart';
 import 'package:app_book/manage/bindings/category_binding.dart';
+import 'package:app_book/manage/bindings/favorite_book_binding.dart';
 import 'package:app_book/manage/bindings/login_binding.dart';
 import 'package:app_book/manage/middlewares/auth_middleware.dart';
 import 'package:app_book/pages/appAdmin/addBookPage/add_book_page.dart';
@@ -9,13 +10,18 @@ import 'package:app_book/pages/appAdmin/adminCategoryPage/admin_category_page.da
 import 'package:app_book/pages/appAdmin/adminPage/admin_page.dart';
 import 'package:app_book/pages/appAdmin/editBookPage/edit_book_page.dart';
 import 'package:app_book/pages/appAdmin/editCategoryPage/edit_category_page.dart';
-import 'package:app_book/pages/appAdmin/loginPage/login_page.dart';
-import 'package:app_book/pages/appAdmin/navigator_page.dart';
+import 'package:app_book/pages/appAdmin/navigator_admin_app_page.dart';
 import 'package:app_book/pages/appAdmin/pdfViewPage/pdf_view_page.dart';
 import 'package:app_book/pages/appAdmin/settingPage/setting_page.dart';
+import 'package:app_book/pages/appUser/navigator_user_app_page.dart';
+import 'package:app_book/pages/appUser/userCategoriesPage/userItemByCategoryPage/user_item_by_category_page.dart';
+import 'package:app_book/pages/appUser/userCategoriesPage/user_categories_page.dart';
+import 'package:app_book/pages/appUser/userHomePage/user_home_page.dart';
+import 'package:app_book/pages/loginPage/login_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../../pages/appAdmin/homePage/home_page.dart';
+import '../../pages/appUser/userDetailBookPage/user_detail_book_page.dart';
 import 'route_name.dart';
 
 class RouterCustom {
@@ -73,6 +79,32 @@ class RouterCustom {
     GetPage(
       name: RouterName.pdfView,
       page: () => const PdfViewerPage(),
+    ),
+    //---------- User
+    GetPage(
+        name: RouterName.navUser,
+        page: () => const NavigatorUserPage(),
+        bindings: [
+          BookBinding(),
+          CategoryBinding(),
+          FavoriteBookBinding(),
+        ]),
+    GetPage(
+      name: RouterName.userHome,
+      page: () => const UserHomePage(),
+      binding: BookBinding(),
+    ),
+    GetPage(
+      name: RouterName.detailBook,
+      page: () => const UserDetailBookPage(),
+    ),
+    GetPage(
+      name: RouterName.userCategories,
+      page: () => const UserCategoriesPage(),
+    ),
+    GetPage(
+      name: RouterName.userBookWithCategory,
+      page: () => const UserItemByCategoryPage(),
     ),
   ];
 }

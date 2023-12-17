@@ -45,7 +45,8 @@ class AdminBookPage extends GetView<BookController> {
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 const SizedBox(height: 10),
-                Obx(() => ListView.separated(
+                Obx(
+                  () => ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: controller.state.listBook.length,
@@ -67,48 +68,9 @@ class AdminBookPage extends GetView<BookController> {
                           image: listBook[index].photoUrl,
                         ),
                       );
-                    }))
-                // StreamBuilder(
-                //   stream: FirebaseService.getAllBooks(),
-                //   builder: (context, snapshot) {
-                //     if (snapshot.hasError) {
-                //       return Text('Error: ${snapshot.error}');
-                //     }
-                //     if (snapshot.connectionState == ConnectionState.waiting) {
-                //       return const Center(
-                //         child: CircularProgressIndicator(),
-                //       );
-                //     }
-                //     if (!snapshot.hasData) {
-                //       return const CircularProgressIndicator();
-                //     }
-                //     List<Book> books = snapshot.data!;
-                //     return ListView.separated(
-                //       shrinkWrap: true,
-                //       physics: const NeverScrollableScrollPhysics(),
-                //       itemCount: snapshot.data!.length,
-                //       separatorBuilder: (BuildContext context, int index) {
-                //         return const Divider(height: 15, color: Colors.white);
-                //       },
-                //       itemBuilder: (BuildContext context, int index) {
-                //         Book book = snapshot.data![index];
-                //         return InkWell(
-                //           onTap: () {
-                //             Get.toNamed(RouterName.pdfView,
-                //                 arguments: book.pdfUrl);
-                //           },
-                //           child: ItemBook(
-                //             bookName: book.bookName,
-                //             authorName: book.authorName,
-                //             desc: book.desc,
-                //             idBook: book.id,
-                //             image: book.photoUrl,
-                //           ),
-                //         );
-                //       },
-                //     );
-                //   },
-                // )
+                    },
+                  ),
+                ),
               ],
             ),
           ),

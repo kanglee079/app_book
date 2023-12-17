@@ -11,7 +11,7 @@ class AuthMiddlewares extends GetMiddleware {
   RouteSettings? redirect(String? route) {
     bool isLogin = UserStore.to.isLogin;
     if (isLogin) {
-      return RouteSettings(name: RouterName.nav);
+      return RouteSettings(name: RouterName.navUser);
     } else {
       return null;
     }

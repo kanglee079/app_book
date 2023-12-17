@@ -22,6 +22,7 @@ class EditBookPage extends StatefulWidget {
 class _EditBookPageState extends State<EditBookPage> {
   String? idBook = Get.arguments as String?;
   String? selectedCategoryId;
+  Category? seletedCategory;
 
   final controllerBook = Get.find<BookController>();
   final controllerCategory = Get.put(CategoryController());
@@ -43,6 +44,7 @@ class _EditBookPageState extends State<EditBookPage> {
     photoUrlController.text = currentBook.photoUrl ?? '';
     pdfUrlController.text = currentBook.pdfUrl ?? '';
     selectedCategoryId = currentBook.idCategory;
+
     setState(() {});
   }
 
@@ -99,7 +101,6 @@ class _EditBookPageState extends State<EditBookPage> {
                   onChanged: (Category? newValue) {
                     selectedCategoryId = newValue?.id;
                   },
-                  selectedItem: null,
                 ),
               ),
               const SizedBox(height: 20),

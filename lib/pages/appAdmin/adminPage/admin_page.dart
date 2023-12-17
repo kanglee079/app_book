@@ -2,7 +2,7 @@ import 'package:app_book/apps/route/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../widgets/item_admin_page.dart';
+import '../../../widgets/item_setting_page.dart';
 
 class AdminPage extends StatelessWidget {
   const AdminPage({super.key});
@@ -25,27 +25,21 @@ class AdminPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          InkWell(
-            onTap: () {
+          ItemAdminPage(
+            nameItem: "Thể loại",
+            ontap: () {
               Get.toNamed(RouterName.adminCategory);
             },
-            child: ItemAdminPage(
-              nameItem: "Thể loại",
-            ),
           ),
-          InkWell(
-            onTap: () {
+          ItemAdminPage(
+            nameItem: "Sách",
+            ontap: () {
               Get.toNamed(RouterName.adminBook);
             },
-            child: ItemAdminPage(
-              nameItem: "Sách",
-            ),
           ),
-          InkWell(
-            onTap: () {},
-            child: ItemAdminPage(
-              nameItem: "Người dùng",
-            ),
+          ItemAdminPage(
+            nameItem: "Người dùng",
+            ontap: () {},
           ),
         ],
       ),
