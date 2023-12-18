@@ -1,4 +1,3 @@
-import 'package:app_book/apps/route/route_name.dart';
 import 'package:app_book/manage/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -78,11 +77,7 @@ class LoginPage extends GetView<LoginController> {
                         SignInButton(
                           Buttons.google,
                           onPressed: () {
-                            controller.loginWithGoogle().then((userCredential) {
-                              Get.offAndToNamed(RouterName.nav);
-                            }).catchError((error) {
-                              print("Lỗi Google");
-                            });
+                            Get.find<LoginController>().loginWithGoogle();
                           },
                           padding: const EdgeInsets.symmetric(
                             horizontal: 100,

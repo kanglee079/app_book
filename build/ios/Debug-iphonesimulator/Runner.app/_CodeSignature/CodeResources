@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		F2mRcr1GWWQqacX8r6maF8y2NrM=
+		jeN5VPwJ2Spzu9BpuORqh0MZG54=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		nE+XmljuheZaffKme26Z/6Ji3PY=
+		5oJBcx2Ws7eq5Oib9CLcO6Ytkks=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
@@ -82,7 +82,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		oNw8ZPUaG+/Oeeu1X07x7SSqN0M=
+		9AaRF2ETcngYn7pADyxqapCyfxY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -834,18 +834,6 @@
 		<data>
 		s1+Ye0nV6T2mELpaK65RnmgXehg=
 		</data>
-		<key>Frameworks/flutter_pdfview.framework/Info.plist</key>
-		<data>
-		/zbvFYi27eDpQxY8H/t84eC3u7Y=
-		</data>
-		<key>Frameworks/flutter_pdfview.framework/_CodeSignature/CodeResources</key>
-		<data>
-		RvoKShb5ATpA0Tsx+o7Vw2UteWc=
-		</data>
-		<key>Frameworks/flutter_pdfview.framework/flutter_pdfview</key>
-		<data>
-		pIXS6fGna45ST37xmvwA1qzWnxQ=
-		</data>
 		<key>Frameworks/fluttertoast.framework/Info.plist</key>
 		<data>
 		mQQM2o0i9rz9X1JWrvTQnv90A74=
@@ -998,9 +986,13 @@
 		<data>
 		oTbw3y/Sb8LPp1K8FXqn+UvINz8=
 		</data>
+		<key>GoogleService-Info.plist</key>
+		<data>
+		OKUsoCocZXcnc/MaCtvPJitr358=
+		</data>
 		<key>Info.plist</key>
 		<data>
-		TK++gw0BhuBU0YKc6aIQc+VtM5Q=
+		bvCIx+WEFWqBSuHwPBhhpfdFjQk=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -1083,7 +1075,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			RvS37h3fnOWEHkj0i75gRKZIFbYVK4CPHEJHSM1jgDE=
+			Fz+sY+Nxjj6XREg57iG4SwDp4g66vMpAQyJAqKd5j/E=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1097,7 +1089,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			h40x/SlpCbg5ktc8DxQxmH2pn5IrOuqbG0MlOptP4wA=
+			tWTPjVhi4Fobce8tfRfLY84mwwnJ0JS53sq8qD2eZ1E=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
@@ -1146,7 +1138,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			twBqDruVX6QfvVHtaTgxeWleAMMwe3obmpjzD3Uq3fo=
+			kGlLgn70djFf6vUE2KpJDwVdKzf91tR4LFGpEzkOry4=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -2205,27 +2197,6 @@
 			5NIgKaBe3RS300ng6cofRgr0gk2s2orXh6ILUPe+dN8=
 			</data>
 		</dict>
-		<key>Frameworks/flutter_pdfview.framework/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			LqKiczUXpsb6P0t02u1kGTMnnYiooAEQdr4O0NwazIE=
-			</data>
-		</dict>
-		<key>Frameworks/flutter_pdfview.framework/_CodeSignature/CodeResources</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			UTJZBhvjfTFeuRwJtzsVnVCl1pudCqEoIRcQIQQ4YF4=
-			</data>
-		</dict>
-		<key>Frameworks/flutter_pdfview.framework/flutter_pdfview</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			fatO1R68x1shZ/GXfTCTpBi86woxty6uHpYOZ1oRhvc=
-			</data>
-		</dict>
 		<key>Frameworks/fluttertoast.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
@@ -2490,6 +2461,13 @@
 			<key>hash2</key>
 			<data>
 			5qHR1+xNbXS4cQD2aw98vq1Vrjq4uN5l/Rh4thURuZM=
+			</data>
+		</dict>
+		<key>GoogleService-Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			WBsa+XamhpVF06jA5vkLUHArNXdQmE2jBZmInk5N8+s=
 			</data>
 		</dict>
 	</dict>

@@ -1,4 +1,5 @@
 import 'package:app_book/manage/controllers/theme_controller.dart';
+import 'package:app_book/manage/services/auth_service.dart';
 import 'package:app_book/manage/services/store_service.dart';
 import 'package:app_book/manage/stores/user_store.dart';
 import 'package:app_book/pages/my_app.dart';
@@ -18,6 +19,7 @@ void main(List<String> args) async {
   await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
 
   Get.lazyPut<ThemeController>(() => ThemeController());
+  Get.lazyPut(() => AuthService());
   await Get.putAsync(() => StoreService().init());
   Get.put(UserStore());
   runApp(const MyApp());
