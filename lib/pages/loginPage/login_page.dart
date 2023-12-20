@@ -10,10 +10,7 @@ class LoginPage extends GetView<LoginController> {
   const LoginPage({super.key});
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> keyLoginForm = GlobalKey<FormState>();
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-    bool isChecked = false;
+    // bool isChecked = false;
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).requestFocus(FocusNode());
@@ -61,29 +58,32 @@ class LoginPage extends GetView<LoginController> {
                         const SizedBox(height: 10),
                         const SizedBox(height: 25),
                         FormLoginWidget(
-                            keyLoginForm: keyLoginForm,
-                            emailController: emailController,
-                            passwordController: passwordController),
-                        const SizedBox(height: 25),
-                        ButtonCustom(
-                          onTap: () {
-                            controller.login();
-                          },
-                          backgroundColor: Theme.of(context).cardColor,
-                          textStyle: Theme.of(context).textTheme.bodyMedium,
-                          textButton: 'LOGIN',
+                          keyLoginForm: controller.keyLoginForm,
+                          emailController: controller.emailController,
+                          passwordController: controller.passwordController,
                         ),
                         const SizedBox(height: 25),
-                        SignInButton(
-                          Buttons.google,
-                          onPressed: () {
-                            Get.find<LoginController>().loginWithGoogle();
-                          },
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 100,
-                            vertical: 10,
+                        Obx(
+                          () => ButtonCustom(
+                            onloading: controller.loading,
+                            onTap: controller.login,
+                            backgroundColor: Theme.of(context).cardColor,
+                            textStyle: Theme.of(context).textTheme.bodyMedium,
+                            textButton: 'LOGIN',
                           ),
-                        )
+                        ),
+                        const SizedBox(height: 25),
+                        SizedBox(
+                          width: double.infinity,
+                          child: SignInButton(
+                            Buttons.google,
+                            onPressed: controller.loginWithGoogle,
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                          ),
+                        ),
+                        ButtonCustom(
+                          onTap: controller.transToRegisterPage,
+                        ),
                       ],
                     ),
                   ),

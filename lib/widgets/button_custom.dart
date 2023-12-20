@@ -7,11 +7,13 @@ class ButtonCustom extends StatelessWidget {
     this.textStyle,
     this.textButton = 'CREATE AN ACCOUNT',
     required this.onTap,
+    this.onloading = false,
   });
   Color backgroundColor;
   TextStyle? textStyle;
   String textButton;
   VoidCallback onTap;
+  bool onloading;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +32,12 @@ class ButtonCustom extends StatelessWidget {
             ),
           ),
           child: Center(
-            child: Text(
-              textButton,
-              style: textStyle,
-            ),
+            child: onloading
+                ? const Center(child: CircularProgressIndicator())
+                : Text(
+                    textButton,
+                    style: textStyle,
+                  ),
           ),
         ),
       ),

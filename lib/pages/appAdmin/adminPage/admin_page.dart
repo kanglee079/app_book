@@ -23,25 +23,28 @@ class AdminPage extends StatelessWidget {
           )
         ],
       ),
-      body: Column(
-        children: [
-          ItemAdminPage(
-            nameItem: "Thể loại",
-            ontap: () {
-              Get.toNamed(RouterName.adminCategory);
-            },
-          ),
-          ItemAdminPage(
-            nameItem: "Sách",
-            ontap: () {
-              Get.toNamed(RouterName.adminBook);
-            },
-          ),
-          ItemAdminPage(
-            nameItem: "Người dùng",
-            ontap: () {},
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            ItemAdminPage(
+              nameItem: "Thể loại",
+              ontap: () {
+                Get.toNamed(RouterName.adminCategory);
+              },
+            ),
+            ItemAdminPage(
+              nameItem: "Sách",
+              ontap: () {
+                Get.toNamed(RouterName.adminBook);
+              },
+            ),
+            ItemAdminPage(
+              nameItem: "Người dùng",
+              ontap: () {},
+            ),
+          ],
+        ),
       ),
     );
   }

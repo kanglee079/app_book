@@ -10,10 +10,23 @@ class AuthMiddlewares extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     bool isLogin = UserStore.to.isLogin;
-    if (isLogin) {
-      return RouteSettings(name: RouterName.navUser);
-    } else {
+    String? role = UserStore.to.userRole;
+
+    if (route == RouterName.register) {
       return null;
     }
+
+    if (!isLogin) {
+      if (route != RouterName.login) {
+        return RouteSettings(name: RouterName.login);
+      }
+    } else {
+      if (role == 'isUser' && route != RouterName.navUser) {
+        return RouteSettings(name: RouterName.navUser);
+      } else if (role == 'isAdmin' && route != RouterName.nav) {
+        return RouteSettings(name: RouterName.nav);
+      }
+    }
+    return null;
   }
 }

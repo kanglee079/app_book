@@ -1,5 +1,4 @@
 import 'package:app_book/apps/const/key.dart';
-import 'package:app_book/apps/route/route_name.dart';
 import 'package:app_book/manage/services/store_service.dart';
 import 'package:app_book/models/user_model.dart';
 import 'package:get/get.dart';
@@ -13,23 +12,28 @@ class UserStore extends GetxController {
 
   bool get isLogin => _isLogin.value;
   String get token => _token.value;
-  // String get info => _token.value;
+  UserModel get userInfo => _info.value;
+  String get userRole => _info.value.role ?? "isUser";
 
   @override
   void onInit() async {
+    super.onInit();
     String key = await StoreService.to.getString(MyKey.TOKEN_USER);
     if (key.isNotEmpty) {
       _isLogin.value = true;
-      //getUser
     }
-
-    super.onInit();
   }
 
-  logout() {
-    Get.offAndToNamed(RouterName.login);
+  Future<void> login(UserModel user) async {
+    _info.value = user;
+    _isLogin.value = true;
+    StoreService.to.setString(MyKey.TOKEN_USER, "TOKEN_USER");
+  }
+
+  Future<void> logout() async {
     _isLogin.value = false;
     _token.value = "";
+    _info.value = UserModel();
     StoreService.to.clean(MyKey.TOKEN_USER);
   }
 }

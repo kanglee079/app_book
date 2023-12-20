@@ -1,5 +1,6 @@
 class RouterName {
   static String login = "/login";
+  static String register = "/register";
   static String nav = "/nav";
   static String home = "/home";
   static String admin = "/admin";

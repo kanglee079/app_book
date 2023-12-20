@@ -1,24 +1,26 @@
 import 'dart:convert';
 
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class UserModel {
   String? id;
-  String? role;
+  String role;
   String? userName;
   String? email;
   String? photoUrl;
   DateTime? dateTime;
+
   UserModel({
     this.id,
     this.userName,
     this.email,
     this.photoUrl,
     this.dateTime,
+    this.role = 'isUser',
   });
 
   Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+    return {
       'id': id,
+      'role': role,
       'userName': userName,
       'email': email,
       'photoUrl': photoUrl,
@@ -28,12 +30,13 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      id: map['id'] != null ? map['id'] as String : null,
-      userName: map['userName'] != null ? map['userName'] as String : null,
-      email: map['email'] != null ? map['email'] as String : null,
-      photoUrl: map['photoUrl'] != null ? map['photoUrl'] as String : null,
+      id: map['id'],
+      role: map['role'] ?? 'isUser',
+      userName: map['userName'],
+      email: map['email'],
+      photoUrl: map['photoUrl'],
       dateTime: map['dateTime'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['dateTime'] as int)
+          ? DateTime.fromMillisecondsSinceEpoch(map['dateTime'])
           : null,
     );
   }
@@ -41,5 +44,5 @@ class UserModel {
   String toJson() => json.encode(toMap());
 
   factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+      UserModel.fromMap(json.decode(source));
 }

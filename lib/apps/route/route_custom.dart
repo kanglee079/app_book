@@ -2,7 +2,11 @@ import 'package:app_book/manage/bindings/book_binding.dart';
 import 'package:app_book/manage/bindings/category_binding.dart';
 import 'package:app_book/manage/bindings/favorite_book_binding.dart';
 import 'package:app_book/manage/bindings/login_binding.dart';
+import 'package:app_book/manage/bindings/nav_binding.dart';
+import 'package:app_book/manage/bindings/register_binding.dart';
+import 'package:app_book/manage/bindings/setting_binding.dart';
 import 'package:app_book/manage/middlewares/auth_middleware.dart';
+import 'package:app_book/manage/middlewares/nav_middleware.dart';
 import 'package:app_book/pages/appAdmin/addBookPage/add_book_page.dart';
 import 'package:app_book/pages/appAdmin/addCategoryPage/add_category_page.dart';
 import 'package:app_book/pages/appAdmin/adminBookPage/admin_book_page.dart';
@@ -18,6 +22,7 @@ import 'package:app_book/pages/appUser/userCategoriesPage/userItemByCategoryPage
 import 'package:app_book/pages/appUser/userCategoriesPage/user_categories_page.dart';
 import 'package:app_book/pages/appUser/userHomePage/user_home_page.dart';
 import 'package:app_book/pages/loginPage/login_page.dart';
+import 'package:app_book/pages/registerPage/register_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../../pages/appAdmin/homePage/home_page.dart';
@@ -35,8 +40,20 @@ class RouterCustom {
       ],
     ),
     GetPage(
+      name: RouterName.register,
+      page: () => const RegisterPage(),
+      binding: RegisterBinding(),
+      middlewares: [
+        AuthMiddlewares(),
+      ],
+    ),
+    GetPage(
       name: RouterName.nav,
       page: () => const NavigatorPage(),
+      binding: NavBinding(),
+      middlewares: [
+        NavMiddlewares(),
+      ],
     ),
     GetPage(
       name: RouterName.home,
@@ -49,6 +66,7 @@ class RouterCustom {
     GetPage(
       name: RouterName.setting,
       page: () => const SettingPage(),
+      binding: SettingBinding(),
     ),
     GetPage(
       name: RouterName.adminBook,
@@ -82,13 +100,14 @@ class RouterCustom {
     ),
     //---------- User
     GetPage(
-        name: RouterName.navUser,
-        page: () => const NavigatorUserPage(),
-        bindings: [
-          BookBinding(),
-          CategoryBinding(),
-          FavoriteBookBinding(),
-        ]),
+      name: RouterName.navUser,
+      page: () => const NavigatorUserPage(),
+      bindings: [
+        BookBinding(),
+        CategoryBinding(),
+        FavoriteBookBinding(),
+      ],
+    ),
     GetPage(
       name: RouterName.userHome,
       page: () => const UserHomePage(),
