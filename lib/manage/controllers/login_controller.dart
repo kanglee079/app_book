@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../services/firebase_service.dart';
+import '../stores/user_store.dart';
 
 class LoginController extends GetxController with StateMixin {
   late TextEditingController emailController;
@@ -35,9 +36,19 @@ class LoginController extends GetxController with StateMixin {
           emailController.text, passwordController.text);
 
       if (user != null) {
+        UserModel? userModel = await FirebaseService().getUser(user.uid);
+
+        if (userModel != null) {
+          UserStore.to.login(userModel);
+        }
+
         showToastSuccess('Đăng nhập thành công');
         StoreService.to.setString(MyKey.TOKEN_USER, user.uid);
-        Get.offAndToNamed(RouterName.nav);
+        if (UserStore.to.userRole == 'isAdmin') {
+          Get.offAndToNamed(RouterName.nav);
+        } else {
+          Get.offAndToNamed(RouterName.navUser);
+        }
       } else {
         showToastError('Thông tin đăng nhập không chính xác');
       }

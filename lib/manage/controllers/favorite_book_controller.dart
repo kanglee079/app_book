@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 class FavoriteBookController extends GetxController {
   final state = FavoriteBookState();
-  late StreamSubscription listen;
 
   @override
   void onReady() {
@@ -22,11 +21,5 @@ class FavoriteBookController extends GetxController {
       print("err");
       return false;
     }
-  }
-
-  @override
-  void onClose() {
-    listen.cancel();
-    super.onClose();
   }
 }

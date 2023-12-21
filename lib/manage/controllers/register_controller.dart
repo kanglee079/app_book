@@ -7,7 +7,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../apps/helper/showToast.dart';
 import '../services/firebase_service.dart';
+import '../stores/user_store.dart';
 
 class RegisterController extends GetxController with StateMixin {
   late TextEditingController emailController;
@@ -47,8 +49,18 @@ class RegisterController extends GetxController with StateMixin {
       );
 
       if (user != null) {
+        UserModel? userModel = await FirebaseService().getUser(user.uid);
+
+        if (userModel != null) {
+          UserStore.to.login(userModel);
+        }
+        showToastSuccess('Đăng kí thành công');
         StoreService.to.setString(MyKey.TOKEN_USER, user.uid);
-        Get.offAndToNamed(RouterName.nav);
+        if (UserStore.to.userRole == 'isAdmin') {
+          Get.offAndToNamed(RouterName.nav);
+        } else {
+          Get.offAndToNamed(RouterName.navUser);
+        }
       } else {
         Get.snackbar('Error', 'Đăng ký thất bại');
       }

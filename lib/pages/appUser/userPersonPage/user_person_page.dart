@@ -1,9 +1,9 @@
+import 'package:app_book/manage/controllers/setting_controller.dart';
 import 'package:app_book/widgets/item_setting_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../../../manage/stores/user_store.dart';
-
-class UserPersonPage extends StatelessWidget {
+class UserPersonPage extends GetView<SettingController> {
   const UserPersonPage({super.key});
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class UserPersonPage extends StatelessWidget {
             ItemAdminPage(
               nameItem: "Logout",
               ontap: () {
-                UserStore.to.logout();
+                controller.logout();
               },
             ),
           ],

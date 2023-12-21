@@ -6,7 +6,6 @@ import 'package:app_book/manage/bindings/nav_binding.dart';
 import 'package:app_book/manage/bindings/register_binding.dart';
 import 'package:app_book/manage/bindings/setting_binding.dart';
 import 'package:app_book/manage/middlewares/auth_middleware.dart';
-import 'package:app_book/manage/middlewares/nav_middleware.dart';
 import 'package:app_book/pages/appAdmin/addBookPage/add_book_page.dart';
 import 'package:app_book/pages/appAdmin/addCategoryPage/add_category_page.dart';
 import 'package:app_book/pages/appAdmin/adminBookPage/admin_book_page.dart';
@@ -21,6 +20,7 @@ import 'package:app_book/pages/appUser/navigator_user_app_page.dart';
 import 'package:app_book/pages/appUser/userCategoriesPage/userItemByCategoryPage/user_item_by_category_page.dart';
 import 'package:app_book/pages/appUser/userCategoriesPage/user_categories_page.dart';
 import 'package:app_book/pages/appUser/userHomePage/user_home_page.dart';
+import 'package:app_book/pages/appUser/userPersonPage/user_person_page.dart';
 import 'package:app_book/pages/loginPage/login_page.dart';
 import 'package:app_book/pages/registerPage/register_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -52,7 +52,7 @@ class RouterCustom {
       page: () => const NavigatorPage(),
       binding: NavBinding(),
       middlewares: [
-        NavMiddlewares(),
+        AuthMiddlewares(),
       ],
     ),
     GetPage(
@@ -106,6 +106,7 @@ class RouterCustom {
         BookBinding(),
         CategoryBinding(),
         FavoriteBookBinding(),
+        SettingBinding(),
       ],
     ),
     GetPage(
@@ -124,6 +125,10 @@ class RouterCustom {
     GetPage(
       name: RouterName.userBookWithCategory,
       page: () => const UserItemByCategoryPage(),
+    ),
+    GetPage(
+      name: RouterName.userPerson,
+      page: () => const UserPersonPage(),
     ),
   ];
 }

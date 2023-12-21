@@ -30,6 +30,21 @@ class FirebaseService {
     }
   }
 
+  Future<UserModel?> getUser(String uid) async {
+    try {
+      DocumentSnapshot userDoc =
+          await _firestore.collection('users').doc(uid).get();
+      if (userDoc.exists) {
+        return UserModel.fromMap(userDoc.data() as Map<String, dynamic>);
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
   // // kiểm tra id hiện tại của category tới đâu để tăng dần
   // static Future<int> getNextCategoryId() async {
   //   final counterRef =

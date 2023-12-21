@@ -81,6 +81,7 @@ class LoginPage extends GetView<LoginController> {
                             padding: const EdgeInsets.symmetric(vertical: 10),
                           ),
                         ),
+                        const SizedBox(height: 25),
                         ButtonCustom(
                           onTap: controller.transToRegisterPage,
                         ),

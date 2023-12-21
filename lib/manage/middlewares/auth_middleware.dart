@@ -16,17 +16,18 @@ class AuthMiddlewares extends GetMiddleware {
       return null;
     }
 
-    if (!isLogin) {
-      if (route != RouterName.login) {
-        return RouteSettings(name: RouterName.login);
-      }
-    } else {
+    if (!isLogin && route != RouterName.login) {
+      return RouteSettings(name: RouterName.login);
+    }
+
+    if (isLogin) {
       if (role == 'isUser' && route != RouterName.navUser) {
         return RouteSettings(name: RouterName.navUser);
       } else if (role == 'isAdmin' && route != RouterName.nav) {
         return RouteSettings(name: RouterName.nav);
       }
     }
+
     return null;
   }
 }

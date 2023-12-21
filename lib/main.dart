@@ -3,7 +3,6 @@ import 'package:app_book/manage/services/auth_service.dart';
 import 'package:app_book/manage/services/store_service.dart';
 import 'package:app_book/manage/stores/user_store.dart';
 import 'package:app_book/pages/my_app.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,7 +15,6 @@ void main(List<String> args) async {
     // name: 'demoapp',
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
 
   Get.lazyPut<ThemeController>(() => ThemeController());
   Get.lazyPut(() => AuthService());
