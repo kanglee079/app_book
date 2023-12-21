@@ -56,11 +56,6 @@ class RegisterController extends GetxController with StateMixin {
         }
         showToastSuccess('Đăng kí thành công');
         StoreService.to.setString(MyKey.TOKEN_USER, user.uid);
-        if (UserStore.to.userRole == 'isAdmin') {
-          Get.offAndToNamed(RouterName.nav);
-        } else {
-          Get.offAndToNamed(RouterName.navUser);
-        }
       } else {
         Get.snackbar('Error', 'Đăng ký thất bại');
       }

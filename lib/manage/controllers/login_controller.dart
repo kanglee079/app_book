@@ -44,11 +44,6 @@ class LoginController extends GetxController with StateMixin {
 
         showToastSuccess('Đăng nhập thành công');
         StoreService.to.setString(MyKey.TOKEN_USER, user.uid);
-        if (UserStore.to.userRole == 'isAdmin') {
-          Get.offAndToNamed(RouterName.nav);
-        } else {
-          Get.offAndToNamed(RouterName.navUser);
-        }
       } else {
         showToastError('Thông tin đăng nhập không chính xác');
       }

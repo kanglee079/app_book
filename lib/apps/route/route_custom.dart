@@ -51,9 +51,6 @@ class RouterCustom {
       name: RouterName.nav,
       page: () => const NavigatorPage(),
       binding: NavBinding(),
-      middlewares: [
-        AuthMiddlewares(),
-      ],
     ),
     GetPage(
       name: RouterName.home,
