@@ -25,10 +25,9 @@ class UserStore extends GetxController {
   }
 
   Future<void> login(UserModel user) async {
-    _info.value.role = user.role;
     _info.value = user;
     _isLogin.value = true;
-    StoreService.to.setString(MyKey.TOKEN_USER, "TOKEN_USER");
+    StoreService.to.setString(MyKey.TOKEN_USER, user.id.toString());
   }
 
   Future<void> logout() async {
