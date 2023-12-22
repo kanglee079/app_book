@@ -40,7 +40,6 @@ class LoginController extends GetxController with StateMixin {
 
         if (userModel != null) {
           UserStore.to.login(userModel);
-          print(userModel);
         }
 
         showToastSuccess('Đăng nhập thành công');
@@ -73,7 +72,6 @@ class LoginController extends GetxController with StateMixin {
 
         showToastSuccess('Đăng nhập bằng Google thành công');
         StoreService.to.setString(MyKey.TOKEN_USER, user.uid);
-        Get.offAndToNamed(RouterName.nav);
       } else {
         showToastError('Đăng nhập thất bại');
       }
