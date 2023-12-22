@@ -10,7 +10,7 @@ class AuthMiddlewares extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     bool isLogin = UserStore.to.isLogin;
-    String? role = UserStore.to.userRole;
+    String role = UserStore.to.userRole;
 
     if (route == RouterName.register) {
       return null;

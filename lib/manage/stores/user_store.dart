@@ -13,7 +13,7 @@ class UserStore extends GetxController {
   bool get isLogin => _isLogin.value;
   String get token => _token.value;
   UserModel get userInfo => _info.value;
-  String get userRole => _info.value.role ?? "isUser";
+  String get userRole => _info.value.role;
 
   @override
   void onInit() async {
@@ -25,6 +25,7 @@ class UserStore extends GetxController {
   }
 
   Future<void> login(UserModel user) async {
+    _info.value.role = user.role;
     _info.value = user;
     _isLogin.value = true;
     StoreService.to.setString(MyKey.TOKEN_USER, "TOKEN_USER");

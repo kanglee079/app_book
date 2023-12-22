@@ -14,8 +14,8 @@ class UserModel {
     this.email,
     this.photoUrl,
     this.dateTime,
-    this.role = 'isUser',
-  });
+    String? role,
+  }) : role = role ?? 'isUser';
 
   Map<String, dynamic> toMap() {
     return {
@@ -31,7 +31,7 @@ class UserModel {
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       id: map['id'],
-      role: map['role'] ?? 'isUser',
+      role: map['role'],
       userName: map['userName'],
       email: map['email'],
       photoUrl: map['photoUrl'],

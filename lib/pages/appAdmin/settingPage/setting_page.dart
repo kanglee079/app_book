@@ -52,6 +52,10 @@ class SettingPage extends GetView<SettingController> {
               ontap: () {},
             ),
             ItemAdminPage(
+              nameItem: "Chuyển sang giao diện User",
+              ontap: controller.transToNavUser,
+            ),
+            ItemAdminPage(
               nameItem: "Đăng Xuất",
               ontap: controller.logout,
             ),

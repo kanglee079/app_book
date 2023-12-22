@@ -40,6 +40,7 @@ class LoginController extends GetxController with StateMixin {
 
         if (userModel != null) {
           UserStore.to.login(userModel);
+          print(userModel);
         }
 
         showToastSuccess('Đăng nhập thành công');

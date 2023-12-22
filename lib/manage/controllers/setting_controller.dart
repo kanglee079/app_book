@@ -8,4 +8,8 @@ class SettingController extends GetxController {
       Get.offAndToNamed(RouterName.login);
     });
   }
+
+  void transToNavUser() {
+    Get.toNamed(RouterName.navUser);
+  }
 }
