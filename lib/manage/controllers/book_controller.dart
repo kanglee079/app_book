@@ -33,8 +33,8 @@ class BookController extends GetxController {
     super.onReady();
   }
 
-  void transToReadPdfBook(String pdfUrl) {
-    Get.toNamed(RouterName.pdfView, arguments: pdfUrl);
+  void transToReadPdfBook(String pdfUrl, String bookId) {
+    Get.toNamed(RouterName.pdfView, arguments: {'url': pdfUrl, 'id': bookId});
   }
 
   void transToDetailBook(Book book) {

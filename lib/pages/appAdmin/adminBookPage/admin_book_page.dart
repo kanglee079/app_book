@@ -57,8 +57,8 @@ class AdminBookPage extends GetView<BookController> {
                       List<Book> listBook = controller.state.listBook;
                       return InkWell(
                         onTap: () {
-                          controller
-                              .transToReadPdfBook(listBook[index].pdfUrl!);
+                          controller.transToReadPdfBook(
+                              listBook[index].pdfUrl!, listBook[index].id);
                         },
                         child: ItemBook(
                           bookName: listBook[index].bookName,

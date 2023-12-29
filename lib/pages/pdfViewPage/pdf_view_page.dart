@@ -1,3 +1,5 @@
+import 'package:app_book/apps/helper/showToast.dart';
+import 'package:app_book/manage/controllers/pdf_view_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -11,12 +13,16 @@ class PdfViewerPage extends StatefulWidget {
 
 class _PdfViewerPageState extends State<PdfViewerPage> {
   final PdfViewerController _pdfViewerController = PdfViewerController();
+  final pdfViewController = Get.find<PdfViewController>();
   int _currentPage = 1;
   int _totalPages = 0;
 
   @override
   Widget build(BuildContext context) {
-    String? pdfUrl = Get.arguments;
+    var data = Get.arguments;
+    String pdfUrl = data['url'];
+    String bookId = data['id'];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Đọc sách"),
@@ -27,7 +33,10 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
               color: Colors.white,
               semanticLabel: 'Bookmark',
             ),
-            onPressed: () {},
+            onPressed: () {
+              pdfViewController.addCurrentPageBook(bookId, _currentPage);
+              showToastSuccess("Đã lưu lại số trang");
+            },
           ),
         ],
       ),

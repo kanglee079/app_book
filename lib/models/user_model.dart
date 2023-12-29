@@ -2,7 +2,7 @@ import 'dart:convert';
 
 class UserModel {
   String? id;
-  String role;
+  String? role;
   String? userName;
   String? email;
   String? photoUrl;
@@ -14,8 +14,8 @@ class UserModel {
     this.email,
     this.photoUrl,
     this.dateTime,
-    String? role,
-  }) : role = role ?? 'isUser';
+    this.role,
+  });
 
   Map<String, dynamic> toMap() {
     return {

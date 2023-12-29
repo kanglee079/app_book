@@ -84,7 +84,7 @@ class _UserDetailBookPageState extends State<UserDetailBookPage> {
       ),
       bottomNavigationBar: ButtonCustom(
         onTap: () {
-          controllerBook.transToReadPdfBook(data.pdfUrl ?? "");
+          controllerBook.transToReadPdfBook(data.pdfUrl ?? "", data.id);
         },
         backgroundColor: Theme.of(context).focusColor,
         textButton: "READ BOOK",

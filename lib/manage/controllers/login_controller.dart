@@ -1,8 +1,6 @@
-import 'package:app_book/apps/const/key.dart';
 import 'package:app_book/apps/helper/showToast.dart';
 import 'package:app_book/apps/route/route_name.dart';
 import 'package:app_book/manage/services/auth_service.dart';
-import 'package:app_book/manage/services/store_service.dart';
 import 'package:app_book/models/user_model.dart'; // Đảm bảo bạn đã tạo UserModel
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +41,7 @@ class LoginController extends GetxController with StateMixin {
         }
 
         showToastSuccess('Đăng nhập thành công');
-        StoreService.to.setString(MyKey.TOKEN_USER, user.uid);
+        // StoreService.to.setString(MyKey.TOKEN_USER, user.uid);
       } else {
         showToastError('Thông tin đăng nhập không chính xác');
       }
@@ -62,16 +60,14 @@ class LoginController extends GetxController with StateMixin {
       User? user = await AuthService.to.signInWithGoogle();
 
       if (user != null) {
-        UserModel newUser = UserModel(
-          id: user.uid,
-          email: user.email,
-          userName: user.displayName,
-        );
+        UserModel? userModel = await FirebaseService().getUser(user.uid);
 
-        await FirebaseService().updateUser(newUser);
+        if (userModel != null) {
+          UserStore.to.login(userModel);
+        }
 
         showToastSuccess('Đăng nhập bằng Google thành công');
-        StoreService.to.setString(MyKey.TOKEN_USER, user.uid);
+        // StoreService.to.setString(MyKey.TOKEN_USER, user.uid);
       } else {
         showToastError('Đăng nhập thất bại');
       }

@@ -1,8 +1,11 @@
 import 'package:app_book/manage/controllers/category_controller.dart';
+import 'package:app_book/manage/controllers/favorite_book_controller.dart';
 import 'package:app_book/models/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:like_button/like_button.dart';
+
+import '../models/book_model.dart';
 
 class ItemUserBook extends StatelessWidget {
   String idBook;
@@ -27,6 +30,10 @@ class ItemUserBook extends StatelessWidget {
     final controllerCategory = Get.find<CategoryController>();
     Category? dataCategory =
         controllerCategory.getCategoryById(idCategory ?? "");
+
+    final controllerFavorite = Get.find<FavoriteBookController>();
+    // bool isLiked = controllerFavorite.isBookFavorite(idBook);
+
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(),
@@ -40,11 +47,29 @@ class ItemUserBook extends StatelessWidget {
                   image ?? "",
                   fit: BoxFit.contain,
                 ),
-                const Positioned(
+                Positioned(
                   top: 5,
                   left: 5,
-                  child: LikeButton(
-                    size: 30,
+                  child: Obx(
+                    () {
+                      bool isLiked = controllerFavorite.isBookFavorite(idBook);
+                      return LikeButton(
+                        size: 30,
+                        isLiked: isLiked,
+                        onTap: (isLiked) async {
+                          Book book = Book(
+                            id: idBook,
+                            bookName: bookName,
+                            authorName: authorName,
+                            desc: desc,
+                            photoUrl: image,
+                            idCategory: idCategory,
+                          );
+                          controllerFavorite.toggleFavoriteBook(book);
+                          return !isLiked;
+                        },
+                      );
+                    },
                   ),
                 ),
                 Positioned(

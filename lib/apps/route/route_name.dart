@@ -19,4 +19,5 @@ class RouterName {
   static String userCategories = "/userCategories";
   static String userBookWithCategory = "/userBookWithCategory";
   static String userPerson = "/userPerson";
+  static String userFavorite = "/userFavorite";
 }

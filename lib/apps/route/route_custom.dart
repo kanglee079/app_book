@@ -3,6 +3,7 @@ import 'package:app_book/manage/bindings/category_binding.dart';
 import 'package:app_book/manage/bindings/favorite_book_binding.dart';
 import 'package:app_book/manage/bindings/login_binding.dart';
 import 'package:app_book/manage/bindings/nav_binding.dart';
+import 'package:app_book/manage/bindings/pdf_view_binding.dart';
 import 'package:app_book/manage/bindings/register_binding.dart';
 import 'package:app_book/manage/bindings/setting_binding.dart';
 import 'package:app_book/manage/middlewares/auth_middleware.dart';
@@ -14,14 +15,15 @@ import 'package:app_book/pages/appAdmin/adminPage/admin_page.dart';
 import 'package:app_book/pages/appAdmin/editBookPage/edit_book_page.dart';
 import 'package:app_book/pages/appAdmin/editCategoryPage/edit_category_page.dart';
 import 'package:app_book/pages/appAdmin/navigator_admin_app_page.dart';
-import 'package:app_book/pages/appAdmin/pdfViewPage/pdf_view_page.dart';
 import 'package:app_book/pages/appAdmin/settingPage/setting_page.dart';
 import 'package:app_book/pages/appUser/navigator_user_app_page.dart';
 import 'package:app_book/pages/appUser/userCategoriesPage/userItemByCategoryPage/user_item_by_category_page.dart';
 import 'package:app_book/pages/appUser/userCategoriesPage/user_categories_page.dart';
+import 'package:app_book/pages/appUser/userFavoritePage/user_favorite_page.dart';
 import 'package:app_book/pages/appUser/userHomePage/user_home_page.dart';
 import 'package:app_book/pages/appUser/userPersonPage/user_person_page.dart';
 import 'package:app_book/pages/loginPage/login_page.dart';
+import 'package:app_book/pages/pdfViewPage/pdf_view_page.dart';
 import 'package:app_book/pages/registerPage/register_page.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
@@ -97,6 +99,7 @@ class RouterCustom {
     GetPage(
       name: RouterName.pdfView,
       page: () => const PdfViewerPage(),
+      binding: PdfViewBinding(),
     ),
     //---------- User
     GetPage(
@@ -107,9 +110,6 @@ class RouterCustom {
         CategoryBinding(),
         FavoriteBookBinding(),
         SettingBinding(),
-      ],
-      middlewares: [
-        AuthMiddlewares(),
       ],
     ),
     GetPage(
@@ -133,5 +133,10 @@ class RouterCustom {
       name: RouterName.userPerson,
       page: () => const UserPersonPage(),
     ),
+    GetPage(
+      name: RouterName.userFavorite,
+      page: () => const UserFavoritePage(),
+      binding: FavoriteBookBinding(),
+    )
   ];
 }

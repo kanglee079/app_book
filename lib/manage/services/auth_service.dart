@@ -33,6 +33,7 @@ class AuthService extends GetxService {
           id: user.uid,
           email: user.email,
           userName: userName,
+          role: "isUser",
         );
 
         await _firebaseService.addUser(newUser);
@@ -63,14 +64,19 @@ class AuthService extends GetxService {
         User? user = userCredential.user;
 
         if (user != null) {
-          await _firebaseService.updateUser(
-            UserModel(
-              id: user.uid,
-              email: user.email,
-              userName: user.displayName,
-              photoUrl: user.photoURL,
-            ),
-          );
+          UserModel? userModel = await FirebaseService().getUser(user.uid);
+          if (userModel != null) {
+            // await _firebaseService.updateUser(userModel);
+          } else {
+            await _firebaseService.updateUser(
+              UserModel(
+                id: user.uid,
+                email: user.email,
+                userName: user.displayName,
+                photoUrl: user.photoURL,
+              ),
+            );
+          }
           return user;
         }
       }
