@@ -4,74 +4,49 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-class PdfViewerPage extends StatefulWidget {
+class PdfViewerPage extends GetView<PdfViewController> {
   const PdfViewerPage({super.key});
 
   @override
-  _PdfViewerPageState createState() => _PdfViewerPageState();
-}
-
-class _PdfViewerPageState extends State<PdfViewerPage> {
-  final PdfViewerController _pdfViewerController = PdfViewerController();
-  final pdfViewController = Get.find<PdfViewController>();
-  int _currentPage = 1;
-  int _totalPages = 0;
-
-  @override
   Widget build(BuildContext context) {
-    var data = Get.arguments;
-    String pdfUrl = data['url'];
-    String bookId = data['id'];
+    final data = Get.arguments;
+    final String bookId = data['id'];
+    final String pdfUrl = data['url'];
+
+    controller.initPdfViewer(bookId);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("Đọc sách"),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(
-              Icons.bookmark,
-              color: Colors.white,
-              semanticLabel: 'Bookmark',
-            ),
+            icon: const Icon(Icons.bookmark),
             onPressed: () {
-              pdfViewController.addCurrentPageBook(bookId, _currentPage);
-              showToastSuccess("Đã lưu lại số trang");
+              try {
+                controller.addCurrentPageBook(
+                    bookId, controller.currentPage.value);
+                showToastSuccess("Đã lưu lại số trang");
+              } catch (e) {}
             },
           ),
         ],
       ),
-      body: Container(
-        child: SfPdfViewer.network(
-          pdfUrl ?? "",
-          controller: _pdfViewerController,
-          onPageChanged: (PdfPageChangedDetails details) {
-            setState(() {
-              _currentPage = details.newPageNumber;
-            });
-          },
-          onDocumentLoaded: (PdfDocumentLoadedDetails details) {
-            setState(() {
-              _totalPages = details.document.pages.count;
-            });
-          },
-          canShowScrollHead: false,
-          canShowScrollStatus: false,
-        ),
-      ),
+      body: Obx(() => SfPdfViewer.network(
+            pdfUrl,
+            controller: controller.pdfViewerController.value,
+            onPageChanged: (details) => controller.onPageChanged(details),
+            onDocumentLoaded: (details) => controller.onDocumentLoaded(details),
+          )),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xFFB6C7D1),
-        onPressed: () {
-          _pdfViewerController.jumpToPage(1);
-        },
+        onPressed: () => controller.jumpToFirstPage(),
         child: const Icon(Icons.first_page),
       ),
-      bottomNavigationBar: Container(
-        height: 100,
-        color: const Color(0xFFB6C7D1),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Text(
-            'Trang $_currentPage / $_totalPages',
+      bottomNavigationBar: Obx(
+        () => SizedBox(
+          height: 100,
+          child: Center(
+            child: Text(
+                'Trang ${controller.currentPage} / ${controller.totalPages}'),
           ),
         ),
       ),

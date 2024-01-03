@@ -70,7 +70,30 @@ class UserPersonPage extends GetView<SettingController> {
             ItemAdminPage(
               nameItem: "Logout",
               ontap: () {
-                controller.logout();
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Xác Nhận'),
+                      content:
+                          const Text('Bạn có chắc chắn muốn đăng xuất không?'),
+                      actions: <Widget>[
+                        TextButton(
+                          child: const Text('Hủy'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        TextButton(
+                          child: const Text('Đăng Xuất'),
+                          onPressed: () {
+                            controller.logout();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
               },
             ),
           ],

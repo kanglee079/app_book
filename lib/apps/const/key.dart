@@ -3,5 +3,5 @@ class MyKey {
   static const String INFO_USER = 'INFO_USER';
 
   static const String OPENAI_API_KEY =
-      "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";
+      "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";
 }
