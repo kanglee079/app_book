@@ -17,6 +17,11 @@ class UserStore extends GetxController {
   UserModel get userInfo => _info.value;
   String? get userRole => _info.value.role;
 
+  String get userName => _info.value.userName ?? 'Không rõ';
+  String get userEmail => _info.value.email ?? 'Không có email';
+  String get photoUrl =>
+      _info.value.photoUrl ??
+      'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png';
   @override
   Future<UserStore> onInit() async {
     String key = await StoreService.to.getString(MyKey.TOKEN_USER);
@@ -40,5 +45,11 @@ class UserStore extends GetxController {
     _token.value = "";
     _info.value = UserModel();
     StoreService.to.clean(MyKey.TOKEN_USER);
+  }
+
+  void updateUserPhotoUrl(String newPhotoUrl) {
+    _info.update((user) {
+      user?.photoUrl = newPhotoUrl;
+    });
   }
 }

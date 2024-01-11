@@ -1,9 +1,9 @@
-import 'package:app_book/manage/controllers/setting_controller.dart';
+import 'package:app_book/manage/controllers/user_setting_controller.dart';
 import 'package:app_book/widgets/item_setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class UserPersonPage extends GetView<SettingController> {
+class UserPersonPage extends GetView<UserSettingController> {
   const UserPersonPage({super.key});
   @override
   Widget build(BuildContext context) {
@@ -36,20 +36,45 @@ class UserPersonPage extends GetView<SettingController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              width: 150,
-              height: 150,
-              decoration: const BoxDecoration(
-                color: Color(0xFFFF9900),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  bottomRight: Radius.circular(12),
+            GestureDetector(
+              onTap: controller.updateProfilePicture,
+              child: Obx(
+                () => Container(
+                  width: 100,
+                  height: 100,
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Image.network(
+                    controller.photoUrl.value,
+                    fit: BoxFit.cover,
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                              : null,
+                        ),
+                      );
+                    },
+                    errorBuilder: (BuildContext context, Object exception,
+                        StackTrace? stackTrace) {
+                      return const Icon(Icons.error);
+                    },
+                  ),
                 ),
               ),
             ),
-            Text(
-              "Name User",
-              style: Theme.of(context).textTheme.bodyMedium,
+            Obx(
+              () => Text(
+                "Tên: ${controller.displayName.value}",
+                style: const TextStyle(fontSize: 20),
+              ),
             ),
             ItemAdminPage(
               nameItem: "Info User",
@@ -68,33 +93,8 @@ class UserPersonPage extends GetView<SettingController> {
               ontap: () {},
             ),
             ItemAdminPage(
-              nameItem: "Logout",
-              ontap: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Xác Nhận'),
-                      content:
-                          const Text('Bạn có chắc chắn muốn đăng xuất không?'),
-                      actions: <Widget>[
-                        TextButton(
-                          child: const Text('Hủy'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        TextButton(
-                          child: const Text('Đăng Xuất'),
-                          onPressed: () {
-                            controller.logout();
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
+              nameItem: "Đăng xuất",
+              ontap: controller.logout,
             ),
           ],
         ),

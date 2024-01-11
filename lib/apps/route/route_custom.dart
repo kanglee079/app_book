@@ -6,6 +6,7 @@ import 'package:app_book/manage/bindings/nav_binding.dart';
 import 'package:app_book/manage/bindings/pdf_view_binding.dart';
 import 'package:app_book/manage/bindings/register_binding.dart';
 import 'package:app_book/manage/bindings/setting_binding.dart';
+import 'package:app_book/manage/bindings/user_setting_binding.dart';
 import 'package:app_book/manage/middlewares/auth_middleware.dart';
 import 'package:app_book/pages/appAdmin/addBookPage/add_book_page.dart';
 import 'package:app_book/pages/appAdmin/addCategoryPage/add_category_page.dart';
@@ -110,6 +111,7 @@ class RouterCustom {
         CategoryBinding(),
         FavoriteBookBinding(),
         SettingBinding(),
+        UserSettingBinding(),
       ],
     ),
     GetPage(
@@ -132,6 +134,7 @@ class RouterCustom {
     GetPage(
       name: RouterName.userPerson,
       page: () => const UserPersonPage(),
+      binding: UserSettingBinding(),
     ),
     GetPage(
       name: RouterName.userFavorite,

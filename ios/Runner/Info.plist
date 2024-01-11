@@ -56,5 +56,7 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Chúng tôi cần quyền truy cập vào thư viện ảnh của bạn để chọn ảnh.</string>
 </dict>
 </plist>
