@@ -1,7 +1,6 @@
 import 'package:app_book/manage/controllers/register_controller.dart'; // Giả sử bạn đã tạo RegisterController
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sign_in_button/sign_in_button.dart';
 
 import '../../widgets/button_custom.dart';
 import '../../widgets/text_form_custom.dart';
@@ -16,6 +15,14 @@ class RegisterPage extends GetView<RegisterController> {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).cardColor,
+          leading: IconButton(
+              onPressed: () {
+                controller.transToLoginPage();
+              },
+              icon: const Icon(Icons.arrow_back)),
+        ),
         backgroundColor: Theme.of(context).cardColor,
         resizeToAvoidBottomInset: false,
         body: Column(
@@ -94,14 +101,6 @@ class RegisterPage extends GetView<RegisterController> {
                           ),
                         ),
                         const SizedBox(height: 25),
-                        SizedBox(
-                          width: double.infinity,
-                          child: SignInButton(
-                            Buttons.google,
-                            onPressed: controller.registerWithGoogle,
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                          ),
-                        )
                       ],
                     ),
                   ),

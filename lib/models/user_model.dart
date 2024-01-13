@@ -7,6 +7,7 @@ class UserModel {
   String? email;
   String? photoUrl;
   DateTime? dateTime;
+  bool? isOnline;
 
   UserModel({
     this.id,
@@ -15,6 +16,7 @@ class UserModel {
     this.photoUrl,
     this.dateTime,
     this.role,
+    this.isOnline,
   });
 
   Map<String, dynamic> toMap() {
@@ -25,6 +27,7 @@ class UserModel {
       'email': email,
       'photoUrl': photoUrl,
       'dateTime': dateTime?.millisecondsSinceEpoch,
+      'isOnline': isOnline,
     };
   }
 
@@ -38,6 +41,7 @@ class UserModel {
       dateTime: map['dateTime'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['dateTime'])
           : null,
+      isOnline: map['isOnline'],
     );
   }
 

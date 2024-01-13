@@ -56,6 +56,8 @@ dependencies:
   onesignal_flutter: ^5.0.4
   image_picker: ^1.0.7
   firebase_storage: ^11.6.0
+  cached_network_image: ^3.3.1
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

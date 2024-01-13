@@ -30,6 +30,7 @@ class BookController extends GetxController {
         }
       },
     );
+    loadFeaturedBooks();
     super.onReady();
   }
 
@@ -58,6 +59,30 @@ class BookController extends GetxController {
         .toList();
   }
 
+  Future<List<Book>> getFeaturedBooks() async {
+    try {
+      QuerySnapshot<Book> querySnapshot = await FirebaseFirestore.instance
+          .collection('books')
+          .where('isFeatured', isEqualTo: true)
+          .withConverter<Book>(
+            fromFirestore: (snapshot, _) => Book.fromMap(snapshot.data()!),
+            toFirestore: (book, _) => book.toMap(),
+          )
+          .get();
+
+      return querySnapshot.docs.map((doc) => doc.data()).toList();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> loadFeaturedBooks() async {
+    try {
+      List<Book> books = await getFeaturedBooks();
+      state.featuredBooks.assignAll(books);
+    } catch (e) {}
+  }
+
   void addBook(
     String? bookName,
     String? authorName,
@@ -65,6 +90,7 @@ class BookController extends GetxController {
     String? desc,
     String? photoUrl,
     String? pdfUrl,
+    bool isFeatured,
   ) {
     Book data = Book(
       id: generateRandomIdBook(),
@@ -74,6 +100,7 @@ class BookController extends GetxController {
       desc: desc,
       photoUrl: photoUrl,
       pdfUrl: pdfUrl,
+      isFeatured: isFeatured,
     );
 
     FirebaseFirestore.instance

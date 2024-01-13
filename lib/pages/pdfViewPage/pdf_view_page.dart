@@ -17,7 +17,7 @@ class PdfViewerPage extends GetView<PdfViewController> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Đọc sách"),
+        title: const Text("Read Book"),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.bookmark),
@@ -46,7 +46,7 @@ class PdfViewerPage extends GetView<PdfViewController> {
           height: 100,
           child: Center(
             child: Text(
-                'Trang ${controller.currentPage} / ${controller.totalPages}'),
+                'Page ${controller.currentPage} / ${controller.totalPages}'),
           ),
         ),
       ),

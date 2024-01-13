@@ -17,11 +17,14 @@ class UserStore extends GetxController {
   UserModel get userInfo => _info.value;
   String? get userRole => _info.value.role;
 
+  String get idUser => _info.value.id ?? "";
   String get userName => _info.value.userName ?? 'Không rõ';
   String get userEmail => _info.value.email ?? 'Không có email';
   String get photoUrl =>
       _info.value.photoUrl ??
       'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png';
+  String get role => _info.value.role ?? "isUser";
+
   @override
   Future<UserStore> onInit() async {
     String key = await StoreService.to.getString(MyKey.TOKEN_USER);
@@ -37,10 +40,12 @@ class UserStore extends GetxController {
     _info.value = user;
     _isLogin.value = true;
     StoreService.to.setString(MyKey.TOKEN_USER, user.id.toString());
+    FirebaseService().updateUserOnlineStatus(user.id!, true);
     Get.offAndToNamed(RouterName.nav);
   }
 
   Future<void> logout() async {
+    FirebaseService().updateUserOnlineStatus(idUser, false);
     _isLogin.value = false;
     _token.value = "";
     _info.value = UserModel();

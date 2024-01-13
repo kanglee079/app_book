@@ -18,6 +18,7 @@ class UserSettingController extends GetxController {
   RxString displayName = UserStore.to.userName.obs;
   RxString emailUser = UserStore.to.userEmail.obs;
   RxString photoUrl = UserStore.to.photoUrl.obs;
+  RxString role = UserStore.to.role.obs;
 
   void logout() {
     Get.dialog(

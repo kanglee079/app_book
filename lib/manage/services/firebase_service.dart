@@ -30,6 +30,16 @@ class FirebaseService {
     }
   }
 
+  Future<void> updateUserOnlineStatus(String userId, bool isOnline) async {
+    try {
+      DocumentReference docRef = _firestore.collection('users').doc(userId);
+
+      await docRef.update({'isOnline': isOnline});
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<UserModel?> getUser(String uid) async {
     try {
       DocumentSnapshot userDoc =

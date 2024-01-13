@@ -31,12 +31,17 @@ class MyTheme {
             fontSize: 14,
           ),
           titleMedium: const TextStyle(
-            color: Colors.grey,
+            color: Colors.black,
             fontSize: 16,
           ),
           titleLarge: const TextStyle(
             color: Color(0xFF212121),
             fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+          displayMedium: const TextStyle(
+            color: Colors.white,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),

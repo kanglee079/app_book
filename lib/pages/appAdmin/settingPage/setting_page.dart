@@ -16,41 +16,41 @@ class SettingPage extends GetView<SettingController> {
           style: Theme.of(context).textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu),
-          )
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {},
+        //     icon: const Icon(Icons.menu),
+        //   )
+        // ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 15),
-            Container(
-              width: 120,
-              height: 120,
-              decoration: BoxDecoration(
-                color: Colors.amber,
-                borderRadius: BorderRadius.circular(70),
-              ),
-            ),
-            const SizedBox(height: 10),
-            const Text("Admin Name"),
-            ItemAdminPage(
-              nameItem: "Tài Khoản",
-              ontap: () {},
-            ),
-            ItemAdminPage(
-              nameItem: "Ngôn Ngữ",
-              ontap: () {},
-            ),
-            ItemAdminPage(
-              nameItem: "Theme",
-              ontap: () {},
-            ),
+            // Container(
+            //   width: 120,
+            //   height: 120,
+            //   decoration: BoxDecoration(
+            //     color: Colors.amber,
+            //     borderRadius: BorderRadius.circular(70),
+            //   ),
+            // ),
+            // const SizedBox(height: 10),
+            // const Text("Admin Name"),
+            // ItemAdminPage(
+            //   nameItem: "Tài Khoản",
+            //   ontap: () {},
+            // ),
+            // ItemAdminPage(
+            //   nameItem: "Ngôn Ngữ",
+            //   ontap: () {},
+            // ),
+            // ItemAdminPage(
+            //   nameItem: "Theme",
+            //   ontap: () {},
+            // ),
             ItemAdminPage(
               nameItem: "Chuyển sang giao diện User",
               ontap: controller.transToNavUser,

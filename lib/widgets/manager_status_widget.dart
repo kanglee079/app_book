@@ -4,19 +4,19 @@ class ManagerStatusWidget extends StatelessWidget {
   String textNameStatus;
   String text1;
   String text2;
-  String text3;
+  String? text3;
   IconData icon1;
   IconData icon2;
-  IconData icon3;
+  IconData? icon3;
   ManagerStatusWidget({
     super.key,
     required this.textNameStatus,
     required this.text1,
     required this.text2,
-    required this.text3,
+    this.text3,
     required this.icon1,
     required this.icon2,
-    required this.icon3,
+    this.icon3,
   });
 
   @override
@@ -79,7 +79,7 @@ class ManagerStatusWidget extends StatelessWidget {
                       Icon(icon3),
                       const SizedBox(width: 10),
                       Text(
-                        text3,
+                        text3 ?? "",
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ],

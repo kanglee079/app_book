@@ -53,7 +53,10 @@ class ItemCategory extends StatelessWidget {
           borderRadius: BorderRadius.circular(18),
         ),
         child: Center(
-          child: Text(nameCategory ?? ""),
+          child: Text(
+            nameCategory ?? "",
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
         ),
       ),
     );

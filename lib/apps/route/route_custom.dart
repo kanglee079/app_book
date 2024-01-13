@@ -1,3 +1,4 @@
+import 'package:app_book/manage/bindings/admin_home_binding.dart';
 import 'package:app_book/manage/bindings/book_binding.dart';
 import 'package:app_book/manage/bindings/category_binding.dart';
 import 'package:app_book/manage/bindings/favorite_book_binding.dart';
@@ -53,7 +54,10 @@ class RouterCustom {
     GetPage(
       name: RouterName.nav,
       page: () => const NavigatorPage(),
-      binding: NavBinding(),
+      bindings: [
+        NavBinding(),
+        AdminHomeBinding(),
+      ],
       middlewares: [
         AuthMiddlewares(),
       ],
@@ -61,6 +65,7 @@ class RouterCustom {
     GetPage(
       name: RouterName.home,
       page: () => const HomePage(),
+      binding: AdminHomeBinding(),
     ),
     GetPage(
       name: RouterName.admin,

@@ -5,6 +5,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 import '../../../models/book_model.dart';
+import '../../../widgets/item_featured_book.dart';
 import '../../../widgets/item_user_book.dart';
 
 class UserHomePage extends GetView<BookController> {
@@ -30,12 +31,6 @@ class UserHomePage extends GetView<BookController> {
               ),
             ],
           ),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.menu),
-            ),
-          ],
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -47,6 +42,42 @@ class UserHomePage extends GetView<BookController> {
                 icon: Icons.search,
               ),
               const SizedBox(height: 20),
+              Text(
+                "Featured Book",
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 10),
+              Obx(
+                () {
+                  return AspectRatio(
+                    aspectRatio: 1 / 0.8,
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) {
+                        return Container(
+                          width: 20,
+                        );
+                      },
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.state.featuredBooks.length,
+                      itemBuilder: (context, index) {
+                        Book book = controller.state.featuredBooks[index];
+                        return AspectRatio(
+                          aspectRatio: 1 / 1.5,
+                          child: ItemFeaturedBook(
+                            idCategory: book.idCategory,
+                            bookName: book.bookName,
+                            authorName: book.authorName,
+                            desc: book.desc,
+                            idBook: book.id,
+                            image: book.photoUrl,
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 30),
               Text(
                 "Popular Book",
                 style: Theme.of(context).textTheme.bodyMedium,

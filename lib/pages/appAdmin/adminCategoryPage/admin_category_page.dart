@@ -29,7 +29,7 @@ class AdminCategoryPage extends GetView<CategoryController> {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           child: Obx(
             () => ListView.separated(
               itemCount: controller.state.listCategory.length,

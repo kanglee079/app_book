@@ -9,6 +9,7 @@ class Book {
   String? desc;
   String? photoUrl;
   String? pdfUrl;
+  bool isFeatured;
   Book({
     required this.id,
     this.bookName,
@@ -17,6 +18,7 @@ class Book {
     this.desc,
     this.photoUrl,
     this.pdfUrl,
+    this.isFeatured = false,
   });
 
   Map<String, dynamic> toMap() {
@@ -28,6 +30,7 @@ class Book {
       'desc': desc,
       'photoUrl': photoUrl,
       'pdfUrl': pdfUrl,
+      'isFeatured': isFeatured,
     };
   }
 
@@ -42,6 +45,7 @@ class Book {
       desc: map['desc'] != null ? map['desc'] as String : null,
       photoUrl: map['photoUrl'] != null ? map['photoUrl'] as String : null,
       pdfUrl: map['pdfUrl'] != null ? map['pdfUrl'] as String : null,
+      isFeatured: map['isFeatured'] ?? false,
     );
   }
 

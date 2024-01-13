@@ -79,7 +79,7 @@ class LoginController extends GetxController with StateMixin {
   }
 
   void transToRegisterPage() {
-    Get.toNamed(RouterName.register);
+    Get.offAndToNamed(RouterName.register);
   }
 
   @override

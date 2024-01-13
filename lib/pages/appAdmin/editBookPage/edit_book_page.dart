@@ -23,6 +23,7 @@ class _EditBookPageState extends State<EditBookPage> {
   String? idBook = Get.arguments as String?;
   String? selectedCategoryId;
   Category? seletedCategory;
+  bool isFeatured = false;
 
   final controllerBook = Get.find<BookController>();
   final controllerCategory = Get.put(CategoryController());
@@ -44,6 +45,7 @@ class _EditBookPageState extends State<EditBookPage> {
     photoUrlController.text = currentBook.photoUrl ?? '';
     pdfUrlController.text = currentBook.pdfUrl ?? '';
     selectedCategoryId = currentBook.idCategory;
+    isFeatured = currentBook.isFeatured;
 
     setState(() {});
   }
@@ -133,6 +135,24 @@ class _EditBookPageState extends State<EditBookPage> {
                 icon: Icons.picture_as_pdf_outlined,
                 controller: pdfUrlController,
               ),
+              Row(
+                children: [
+                  Text(
+                    "Đặt là sách nổi bật",
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  Checkbox(
+                    value: isFeatured,
+                    onChanged: (bool? newValue) {
+                      setState(
+                        () {
+                          isFeatured = newValue ?? false;
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -148,6 +168,8 @@ class _EditBookPageState extends State<EditBookPage> {
                   desc: descController.text,
                   photoUrl: photoUrlController.text,
                   pdfUrl: pdfUrlController.text,
+                  idCategory: selectedCategoryId,
+                  isFeatured: isFeatured,
                 ),
               );
               showToastSuccess("Cập nhật sách thành công!");

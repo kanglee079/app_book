@@ -5,11 +5,11 @@ import 'package:get/get.dart';
 class SettingController extends GetxController {
   logout() {
     UserStore.to.logout().then((value) {
-      Get.offAndToNamed(RouterName.login);
+      Get.offAllNamed(RouterName.login);
     });
   }
 
   void transToNavUser() {
-    Get.toNamed(RouterName.navUser);
+    Get.offAndToNamed(RouterName.navUser);
   }
 }

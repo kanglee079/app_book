@@ -94,4 +94,8 @@ class RegisterController extends GetxController with StateMixin {
       _loading.value = false;
     }
   }
+
+  void transToLoginPage() {
+    Get.offAndToNamed(RouterName.login);
+  }
 }

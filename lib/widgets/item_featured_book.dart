@@ -9,7 +9,7 @@ import 'package:shimmer/shimmer.dart';
 
 import '../models/book_model.dart';
 
-class ItemUserBook extends StatelessWidget {
+class ItemFeaturedBook extends StatelessWidget {
   String idBook;
   String? bookName;
   String? authorName;
@@ -17,7 +17,7 @@ class ItemUserBook extends StatelessWidget {
   String? image;
   String? idCategory;
 
-  ItemUserBook({
+  ItemFeaturedBook({
     super.key,
     required this.bookName,
     required this.authorName,
@@ -37,18 +37,18 @@ class ItemUserBook extends StatelessWidget {
     // bool isLiked = controllerFavorite.isBookFavorite(idBook);
 
     return Container(
-      width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
+        color: Theme.of(context).focusColor,
         border: Border.all(
           width: 1,
           color: Colors.black,
         ),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
               child: Stack(
@@ -59,7 +59,7 @@ class ItemUserBook extends StatelessWidget {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: imageProvider,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),
@@ -80,7 +80,7 @@ class ItemUserBook extends StatelessWidget {
                   ),
                   Positioned(
                     top: 5,
-                    left: 5,
+                    left: 25,
                     child: Obx(
                       () {
                         bool isLiked =
@@ -105,9 +105,9 @@ class ItemUserBook extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    right: 1,
+                    right: 19,
                     child: Container(
-                      width: 100,
+                      width: 80,
                       height: 35,
                       decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,

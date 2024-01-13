@@ -23,6 +23,7 @@ class _AddBookPageState extends State<AddBookPage> {
   TextEditingController descController = TextEditingController();
   TextEditingController photoUrlController = TextEditingController();
   TextEditingController pdfUrlController = TextEditingController();
+  bool isFeatured = false;
 
   final controllerBook = Get.find<BookController>();
   final controllerCategory = Get.put(CategoryController());
@@ -108,6 +109,25 @@ class _AddBookPageState extends State<AddBookPage> {
                   icon: Icons.picture_as_pdf_outlined,
                   controller: pdfUrlController,
                 ),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    Text(
+                      "Đặt là sách nổi bật",
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    Checkbox(
+                      value: isFeatured,
+                      onChanged: (bool? newValue) {
+                        setState(
+                          () {
+                            isFeatured = newValue ?? false;
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -116,12 +136,14 @@ class _AddBookPageState extends State<AddBookPage> {
           onTap: () {
             try {
               controllerBook.addBook(
-                  nameBookController.text,
-                  nameAuthorController.text,
-                  selectedCategoryId,
-                  descController.text,
-                  photoUrlController.text,
-                  pdfUrlController.text);
+                nameBookController.text,
+                nameAuthorController.text,
+                selectedCategoryId,
+                descController.text,
+                photoUrlController.text,
+                pdfUrlController.text,
+                isFeatured,
+              );
 
               nameBookController.clear();
               nameAuthorController.clear();

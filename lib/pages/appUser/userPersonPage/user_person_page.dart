@@ -1,3 +1,4 @@
+import 'package:app_book/apps/route/route_name.dart';
 import 'package:app_book/manage/controllers/user_setting_controller.dart';
 import 'package:app_book/widgets/item_setting_page.dart';
 import 'package:flutter/material.dart';
@@ -24,12 +25,6 @@ class UserPersonPage extends GetView<UserSettingController> {
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -70,6 +65,7 @@ class UserPersonPage extends GetView<UserSettingController> {
                 ),
               ),
             ),
+            const SizedBox(height: 10),
             Obx(
               () => Text(
                 "Tên: ${controller.displayName.value}",
@@ -81,20 +77,27 @@ class UserPersonPage extends GetView<UserSettingController> {
               ontap: () {},
             ),
             ItemAdminPage(
-              nameItem: "Info User",
+              nameItem: "Change Password",
               ontap: () {},
             ),
-            ItemAdminPage(
-              nameItem: "Info User",
-              ontap: () {},
-            ),
-            ItemAdminPage(
-              nameItem: "Info User",
-              ontap: () {},
-            ),
-            ItemAdminPage(
-              nameItem: "Đăng xuất",
-              ontap: controller.logout,
+            Builder(
+              builder: (context) {
+                if (controller.role == "isUser") {
+                  return ItemAdminPage(
+                    nameItem: "Logout",
+                    ontap: () {
+                      controller.logout();
+                    },
+                  );
+                } else {
+                  return ItemAdminPage(
+                    nameItem: "Transfer to Admin",
+                    ontap: () {
+                      Get.offAndToNamed(RouterName.nav);
+                    },
+                  );
+                }
+              },
             ),
           ],
         ),

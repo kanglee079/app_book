@@ -52,12 +52,6 @@ class _ChatPageState extends State<ChatPage> {
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu),
-          ),
-        ],
       ),
       body: Column(
         children: [

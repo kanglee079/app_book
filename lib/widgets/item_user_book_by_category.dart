@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class UserItemByCategory extends StatelessWidget {
   String idBook;
@@ -29,12 +31,31 @@ class UserItemByCategory extends StatelessWidget {
         children: [
           Expanded(
             flex: 1,
-            child: Container(
-              height: 195,
-              color: Colors.redAccent,
-              child: Image.network(
-                image ?? "",
-                fit: BoxFit.contain,
+            child: AspectRatio(
+              aspectRatio: 1 / 1.5,
+              child: CachedNetworkImage(
+                imageUrl: image ?? "",
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                placeholder: (context, url) => Shimmer.fromColors(
+                  baseColor: Colors.grey,
+                  highlightColor: Colors.grey,
+                  child: const Text(
+                    '',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
           ),

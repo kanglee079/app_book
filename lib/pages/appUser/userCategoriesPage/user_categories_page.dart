@@ -24,12 +24,6 @@ class UserCategoriesPage extends GetView<CategoryController> {
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -63,7 +57,8 @@ class UserCategoriesPage extends GetView<CategoryController> {
                             children: [
                               Text(
                                 dataCategory.nameCategory ?? "",
-                                style: Theme.of(context).textTheme.bodyMedium,
+                                style:
+                                    Theme.of(context).textTheme.displayMedium,
                               ),
                               const Icon(Icons.arrow_circle_right_outlined),
                             ],
