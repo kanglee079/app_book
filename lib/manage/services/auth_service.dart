@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../../apps/helper/showToast.dart';
 import '../../models/user_model.dart';
 import 'firebase_service.dart';
 
@@ -84,5 +85,23 @@ class AuthService extends GetxService {
       rethrow;
     }
     return null;
+  }
+
+  Future<void> changePassword(String newPassword) async {
+    User? user = _auth.currentUser;
+
+    if (user == null) {
+      throw Exception("Không tìm thấy người dùng");
+    }
+
+    try {
+      await user.updatePassword(newPassword);
+      showToastSuccess("Đổi mật khẩu thành công");
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        throw Exception("Yêu cầu đăng nhập lại để đổi mật khẩu");
+      }
+      rethrow;
+    }
   }
 }

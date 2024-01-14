@@ -1,5 +1,4 @@
 import 'package:app_book/manage/controllers/book_controller.dart';
-import 'package:app_book/widgets/search_book.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
@@ -37,10 +36,43 @@ class UserHomePage extends GetView<BookController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SearchBook(
-                contentSearch: "Search your book",
-                icon: Icons.search,
+              InkWell(
+                onTap: () {
+                  controller.transToSearchPage();
+                },
+                child: Container(
+                  height: 45,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.black,
+                    ),
+                  ),
+                  child: const Row(
+                    children: [
+                      SizedBox(width: 15),
+                      Icon(Icons.search),
+                      Text(
+                        "Search Your Book",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
+              // InkWell(
+              //   onTap: controller.transToSearchPage,
+              //   child: SearchBook(
+              //     contentSearch: "Search your book",
+              //     icon: Icons.search,
+              //   ),
+              // ),
               const SizedBox(height: 20),
               Text(
                 "Featured Book",

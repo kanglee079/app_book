@@ -78,7 +78,9 @@ class UserPersonPage extends GetView<UserSettingController> {
             ),
             ItemAdminPage(
               nameItem: "Change Password",
-              ontap: () {},
+              ontap: () {
+                controller.transToChangePassPage();
+              },
             ),
             Builder(
               builder: (context) {

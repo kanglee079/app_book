@@ -45,6 +45,10 @@ class BookController extends GetxController {
     );
   }
 
+  void transToSearchPage() {
+    Get.toNamed(RouterName.search);
+  }
+
   void transToAddBook() {
     Get.toNamed(RouterName.addBook);
   }

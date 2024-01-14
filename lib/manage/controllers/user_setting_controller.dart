@@ -23,12 +23,12 @@ class UserSettingController extends GetxController {
   void logout() {
     Get.dialog(
       AlertDialog(
-        title: const Text('Đăng xuất'),
-        content: const Text('Bạn có chắc chắn muốn đăng xuất?'),
+        title: const Text('Logout'),
+        content: const Text('Are you sure to logout?'),
         actions: <Widget>[
           TextButton(
             child: const Text(
-              'Hủy',
+              'Cancel',
               style: TextStyle(
                 color: Color(0xff343434),
                 fontSize: 18,
@@ -38,7 +38,7 @@ class UserSettingController extends GetxController {
           ),
           TextButton(
             child: const Text(
-              'Đồng ý',
+              'Yes',
               style: TextStyle(
                 color: Color(0xff343434),
                 fontSize: 18,
@@ -82,5 +82,9 @@ class UserSettingController extends GetxController {
         print("Lỗi");
       }
     }
+  }
+
+  void transToChangePassPage() {
+    Get.toNamed(RouterName.changePassword);
   }
 }

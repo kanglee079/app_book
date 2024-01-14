@@ -18,7 +18,9 @@ import 'package:app_book/pages/appAdmin/editBookPage/edit_book_page.dart';
 import 'package:app_book/pages/appAdmin/editCategoryPage/edit_category_page.dart';
 import 'package:app_book/pages/appAdmin/navigator_admin_app_page.dart';
 import 'package:app_book/pages/appAdmin/settingPage/setting_page.dart';
+import 'package:app_book/pages/appUser/changePasswordPage/change_password_page.dart';
 import 'package:app_book/pages/appUser/navigator_user_app_page.dart';
+import 'package:app_book/pages/appUser/searchPage/search_page.dart';
 import 'package:app_book/pages/appUser/userCategoriesPage/userItemByCategoryPage/user_item_by_category_page.dart';
 import 'package:app_book/pages/appUser/userCategoriesPage/user_categories_page.dart';
 import 'package:app_book/pages/appUser/userFavoritePage/user_favorite_page.dart';
@@ -145,6 +147,14 @@ class RouterCustom {
       name: RouterName.userFavorite,
       page: () => const UserFavoritePage(),
       binding: FavoriteBookBinding(),
+    ),
+    GetPage(
+      name: RouterName.search,
+      page: () => const SearchPage(),
+    ),
+    GetPage(
+      name: RouterName.changePassword,
+      page: () => const PersonalChangePasswordPage(),
     )
   ];
 }
