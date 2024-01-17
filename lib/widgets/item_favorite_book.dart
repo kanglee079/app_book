@@ -95,21 +95,21 @@ class ItemFavoriteBook extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Tên sách: ${bookName ?? ""}",
+                    "Book Name: ${bookName ?? ""}",
                     style: Theme.of(context).textTheme.titleLarge,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    "Tên tác giả: ${authorName ?? ""}",
+                    "Author Name: ${authorName ?? ""}",
                     style: Theme.of(context).textTheme.titleMedium,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    "Mô tả: ${desc ?? ""}",
+                    "Desc: ${desc ?? ""}",
                     style: Theme.of(context).textTheme.titleSmall,
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,

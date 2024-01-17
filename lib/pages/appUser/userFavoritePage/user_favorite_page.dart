@@ -40,7 +40,9 @@ class UserFavoritePage extends GetView<FavoriteBookController> {
             itemBuilder: (BuildContext context, int index) {
               List<Book> listBook = controller.state.listFavoriteBook;
               return InkWell(
-                onTap: () {},
+                onTap: () {
+                  controller.transToDetailBook(listBook[index]);
+                },
                 child: ItemFavoriteBook(
                   bookName: listBook[index].bookName,
                   authorName: listBook[index].authorName,

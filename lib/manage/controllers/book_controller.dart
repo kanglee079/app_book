@@ -7,10 +7,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../../apps/route/route_name.dart';
+import '../../models/user_model.dart';
+import '../stores/user_store.dart';
 
 class BookController extends GetxController {
   final state = BookState();
   late StreamSubscription listen;
+  UserModel userInfo = UserStore.to.userInfo;
 
   @override
   void onReady() {

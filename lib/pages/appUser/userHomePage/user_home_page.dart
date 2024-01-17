@@ -24,9 +24,19 @@ class UserHomePage extends GetView<BookController> {
                 color: Theme.of(context).primaryColor,
               ),
               const SizedBox(width: 5),
-              Text(
-                "Home Page",
-                style: Theme.of(context).textTheme.bodyLarge,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Home Page",
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  Text(
+                    "Hello: ${controller.userInfo.userName}",
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  const SizedBox(height: 10),
+                ],
               ),
             ],
           ),
@@ -93,15 +103,20 @@ class UserHomePage extends GetView<BookController> {
                       itemCount: controller.state.featuredBooks.length,
                       itemBuilder: (context, index) {
                         Book book = controller.state.featuredBooks[index];
-                        return AspectRatio(
-                          aspectRatio: 1 / 1.5,
-                          child: ItemFeaturedBook(
-                            idCategory: book.idCategory,
-                            bookName: book.bookName,
-                            authorName: book.authorName,
-                            desc: book.desc,
-                            idBook: book.id,
-                            image: book.photoUrl,
+                        return InkWell(
+                          onTap: () {
+                            controller.transToDetailBook(book);
+                          },
+                          child: AspectRatio(
+                            aspectRatio: 1 / 1.5,
+                            child: ItemFeaturedBook(
+                              idCategory: book.idCategory,
+                              bookName: book.bookName,
+                              authorName: book.authorName,
+                              desc: book.desc,
+                              idBook: book.id,
+                              image: book.photoUrl,
+                            ),
                           ),
                         );
                       },

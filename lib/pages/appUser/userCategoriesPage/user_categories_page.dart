@@ -34,7 +34,7 @@ class UserCategoriesPage extends GetView<CategoryController> {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: controller.state.listCategory.length,
               separatorBuilder: (BuildContext context, int index) {
-                return const Divider(height: 30, color: Colors.white);
+                return const Divider(height: 25, color: Colors.white);
               },
               itemBuilder: (BuildContext context, int index) {
                 Category dataCategory = controller.state.listCategory[index];

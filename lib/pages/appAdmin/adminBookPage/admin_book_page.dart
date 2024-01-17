@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../models/book_model.dart';
-import '../../../widgets/search_book.dart';
 
 class AdminBookPage extends GetView<BookController> {
   const AdminBookPage({super.key});
@@ -35,10 +34,10 @@ class AdminBookPage extends GetView<BookController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SearchBook(
-                  contentSearch: "Search Your book",
-                  icon: Icons.search,
-                ),
+                // SearchBook(
+                //   contentSearch: "Search Your book",
+                //   icon: Icons.search,
+                // ),
                 const SizedBox(height: 15),
                 Text(
                   "Danh sách sách",

@@ -74,7 +74,15 @@ class UserPersonPage extends GetView<UserSettingController> {
             ),
             ItemAdminPage(
               nameItem: "Info User",
-              ontap: () {},
+              ontap: () {
+                controller.transToInfoUser();
+              },
+            ),
+            ItemAdminPage(
+              nameItem: "Chat With Admin",
+              ontap: () {
+                controller.transToListChatWithAdmin();
+              },
             ),
             ItemAdminPage(
               nameItem: "Change Password",

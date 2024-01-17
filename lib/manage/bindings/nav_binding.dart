@@ -1,3 +1,4 @@
+import 'package:app_book/manage/controllers/admin_manage_user_controller.dart';
 import 'package:app_book/manage/controllers/book_controller.dart';
 import 'package:app_book/manage/controllers/category_controller.dart';
 import 'package:app_book/manage/controllers/nav_controller.dart';
@@ -11,5 +12,6 @@ class NavBinding implements Bindings {
     Get.put(BookController());
     Get.put(SettingController());
     Get.put(CategoryController());
+    Get.put(AdminManageUserController());
   }
 }

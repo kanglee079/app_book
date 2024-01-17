@@ -1,31 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../manage/controllers/search_controller.dart';
 
 class SearchBook extends StatelessWidget {
-  String contentSearch;
-  IconData icon;
-  SearchBook({
-    super.key,
-    required this.contentSearch,
-    required this.icon,
-  });
+  final TextEditingController _searchController = TextEditingController();
+
+  SearchBook({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final searchController = Get.find<SearchBookController>();
+
     return TextField(
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-        labelText: contentSearch,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10,
-        ),
-        labelStyle: Theme.of(context).textTheme.bodySmall,
-        prefixIcon: Icon(icon),
+      controller: _searchController,
+      decoration: const InputDecoration(
+        labelText: 'Search Book',
+        suffixIcon: Icon(Icons.search),
       ),
-      style: Theme.of(context).textTheme.bodySmall,
-      onChanged: (value) {},
+      onChanged: searchController.onSearchChanged,
     );
   }
 }

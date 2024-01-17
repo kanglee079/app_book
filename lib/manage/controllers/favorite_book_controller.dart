@@ -4,6 +4,7 @@ import 'package:app_book/models/book_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
+import '../../apps/route/route_name.dart';
 import '../state/favorite_book.dart';
 
 class FavoriteBookController extends GetxController {
@@ -15,6 +16,13 @@ class FavoriteBookController extends GetxController {
   void onReady() {
     super.onReady();
     loadFavoriteBooks();
+  }
+
+  void transToDetailBook(Book book) {
+    Get.toNamed(
+      RouterName.detailBook,
+      arguments: book,
+    );
   }
 
   bool isBookFavorite(String bookId) {

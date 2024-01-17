@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../apps/helper/showToast.dart';
-import '../../../manage/services/auth_service.dart';
-import '../../../widgets/button_custom.dart';
-import '../../../widgets/text_form_custom.dart';
+import '../../../../apps/helper/showToast.dart';
+import '../../../../manage/services/auth_service.dart';
+import '../../../../widgets/button_custom.dart';
+import '../../../../widgets/text_form_custom.dart';
 
 class PersonalChangePasswordPage extends StatefulWidget {
   const PersonalChangePasswordPage({super.key});

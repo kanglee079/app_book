@@ -12,11 +12,13 @@ import 'firebase_options.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
+
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
 
   OneSignal.initialize("4ef789ff-548a-4239-9d45-8324237cd02b");
 
   OneSignal.Notifications.requestPermission(true);
+
   await Firebase.initializeApp(
     // name: 'demoapp',
     options: DefaultFirebaseOptions.currentPlatform,

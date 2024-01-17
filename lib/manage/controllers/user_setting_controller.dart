@@ -13,6 +13,9 @@ import '../stores/user_store.dart';
 
 class UserSettingController extends GetxController {
   final state = PersonalState();
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  RxList<UserModel> adminUsers = <UserModel>[].obs;
 
   UserModel userInfo = UserStore.to.userInfo;
   RxString displayName = UserStore.to.userName.obs;
@@ -84,7 +87,39 @@ class UserSettingController extends GetxController {
     }
   }
 
+  void fetchAdminUsers() {
+    firestore
+        .collection('users')
+        .where('role', isEqualTo: 'isAdmin')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      adminUsers.assignAll(querySnapshot.docs
+          .map((doc) => UserModel.fromMap(doc.data() as Map<String, dynamic>))
+          .toList());
+    }).catchError((error) {
+      print('Error fetching admin users: $error');
+    });
+  }
+
   void transToChangePassPage() {
     Get.toNamed(RouterName.changePassword);
+  }
+
+  void transToInfoUser() {
+    Get.toNamed(RouterName.userInfo);
+  }
+
+  void transToListChatWithAdmin() {
+    Get.toNamed(RouterName.listChatWithAdminPage);
+  }
+
+  void transToChatWithAdmin() {
+    Get.toNamed(RouterName.userChat);
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchAdminUsers();
   }
 }

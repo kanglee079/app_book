@@ -1,5 +1,4 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:app_book/pages/appUser/chatPage/chat_page.dart';
 import 'package:app_book/pages/appUser/userCategoriesPage/user_categories_page.dart';
 import 'package:app_book/pages/appUser/userFavoritePage/user_favorite_page.dart';
 import 'package:app_book/pages/appUser/userHomePage/user_home_page.dart';
@@ -25,7 +24,6 @@ class _NavigatorUserPageState extends State<NavigatorUserPage> {
           UserHomePage(),
           UserCategoriesPage(),
           UserFavoritePage(),
-          ChatPage(),
           UserPersonPage(),
         ],
       ),
@@ -37,7 +35,6 @@ class _NavigatorUserPageState extends State<NavigatorUserPage> {
           Icons.home,
           Icons.category,
           Icons.favorite,
-          Icons.chat,
           Icons.person,
         ],
         activeColor: const Color(0xFFFF9900),

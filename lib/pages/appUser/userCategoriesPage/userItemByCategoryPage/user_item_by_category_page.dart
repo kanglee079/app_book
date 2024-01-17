@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import '../../../../manage/controllers/book_controller.dart';
 import '../../../../models/book_model.dart';
 import '../../../../widgets/item_user_book_by_category.dart';
-import '../../../../widgets/search_book.dart';
 
 class UserItemByCategoryPage extends StatefulWidget {
   const UserItemByCategoryPage({super.key});
@@ -56,38 +55,37 @@ class _UserItemByCategoryPageState extends State<UserItemByCategoryPage> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          child: Column(
-            children: [
-              SearchBook(
-                contentSearch: "Search your book",
-                icon: Icons.search,
-              ),
-              const SizedBox(height: 20),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: booksOfCategory.length,
-                separatorBuilder: (BuildContext context, int index) {
-                  return const Divider(height: 30, color: Colors.grey);
-                },
-                itemBuilder: (BuildContext context, int index) {
-                  Book dataBook = booksOfCategory[index];
-                  return InkWell(
-                    onTap: () {
-                      controllerBook.transToDetailBook(dataBook);
-                    },
-                    child: UserItemByCategory(
-                      idBook: dataBook.id,
-                      bookName: dataBook.bookName,
-                      authorName: dataBook.authorName,
-                      desc: dataBook.desc,
-                      image: dataBook.photoUrl,
-                    ),
-                  );
-                },
-              )
-            ],
-          ),
+          child: booksOfCategory.isNotEmpty
+              ? ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: booksOfCategory.length,
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const Divider(height: 30, color: Colors.grey);
+                  },
+                  itemBuilder: (BuildContext context, int index) {
+                    Book dataBook = booksOfCategory[index];
+
+                    return InkWell(
+                      onTap: () {
+                        controllerBook.transToDetailBook(dataBook);
+                      },
+                      child: UserItemByCategory(
+                        idBook: dataBook.id,
+                        bookName: dataBook.bookName,
+                        authorName: dataBook.authorName,
+                        desc: dataBook.desc,
+                        image: dataBook.photoUrl,
+                      ),
+                    );
+                  },
+                )
+              : Center(
+                  child: Text(
+                    "Not yet a Book",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ),
         ),
       ),
     );

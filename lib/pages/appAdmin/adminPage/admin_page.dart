@@ -41,7 +41,21 @@ class AdminPage extends StatelessWidget {
             ),
             ItemAdminPage(
               nameItem: "Người dùng",
-              ontap: () {},
+              ontap: () {
+                Get.toNamed(RouterName.adminManageUser);
+              },
+            ),
+            ItemAdminPage(
+              nameItem: "Tạo thông báo",
+              ontap: () {
+                Get.toNamed(RouterName.notificationSend);
+              },
+            ),
+            ItemAdminPage(
+              nameItem: "Chat",
+              ontap: () {
+                Get.toNamed(RouterName.listRoomChat);
+              },
             ),
           ],
         ),

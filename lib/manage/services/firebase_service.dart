@@ -55,6 +55,20 @@ class FirebaseService {
     }
   }
 
+  Future<List<UserModel>> getAllUsers() async {
+    try {
+      QuerySnapshot querySnapshot = await _firestore.collection('users').get();
+      List<UserModel> users = [];
+      for (var doc in querySnapshot.docs) {
+        users.add(UserModel.fromMap(doc.data() as Map<String, dynamic>));
+      }
+      return users;
+    } catch (e) {
+      print(e);
+      return [];
+    }
+  }
+
   // // kiểm tra id hiện tại của category tới đâu để tăng dần
   // static Future<int> getNextCategoryId() async {
   //   final counterRef =

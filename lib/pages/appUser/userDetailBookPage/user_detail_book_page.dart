@@ -1,6 +1,8 @@
 import 'package:app_book/widgets/button_custom.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../manage/controllers/book_controller.dart';
 import '../../../models/book_model.dart';
@@ -52,9 +54,29 @@ class _UserDetailBookPageState extends State<UserDetailBookPage> {
               width: double.infinity,
               height: 300,
               color: Theme.of(context).hintColor,
-              child: Image.network(
-                data.photoUrl!,
-                fit: BoxFit.contain,
+              child: CachedNetworkImage(
+                imageUrl: data.photoUrl ?? "",
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+                placeholder: (context, url) => Shimmer.fromColors(
+                  baseColor: Colors.grey,
+                  highlightColor: Colors.grey,
+                  child: const Text(
+                    '',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
             Padding(

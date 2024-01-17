@@ -24,7 +24,7 @@ class ManagerStatusWidget extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Row(
             children: [
               Expanded(
@@ -33,10 +33,10 @@ class ManagerStatusWidget extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_forward_ios_outlined),
-              ),
+              // IconButton(
+              //   onPressed: () {},
+              //   icon: const Icon(Icons.arrow_forward_ios_outlined),
+              // ),
             ],
           ),
         ),
