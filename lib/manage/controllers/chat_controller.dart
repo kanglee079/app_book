@@ -10,9 +10,7 @@ class ChatController extends GetxController {
   RxList<ChatRoom> chatRooms = <ChatRoom>[].obs;
   RxList<Message> messages = <Message>[].obs;
 
-  // Tạo phòng chat mới
   Future<void> createChatRoom(String userId, String adminId) async {
-    // Tạo ID cho chat room
     String chatRoomId = 'chatRoom_${userId}_$adminId';
     ChatRoom newChatRoom = ChatRoom(
       roomId: chatRoomId,
@@ -21,7 +19,6 @@ class ChatController extends GetxController {
       messages: [],
     );
 
-    // Lưu vào Firestore
     await firestore
         .collection('chatRooms')
         .doc(chatRoomId)
@@ -31,19 +28,15 @@ class ChatController extends GetxController {
   Future<void> createOrJoinChatRoom(String userId, String adminId) async {
     String chatRoomId = 'chatRoom_${userId}_$adminId';
 
-    // Kiểm tra xem phòng chat đã tồn tại hay chưa
     final existingRoom =
         await firestore.collection('chatRooms').doc(chatRoomId).get();
     if (!existingRoom.exists) {
-      // Nếu chưa tồn tại, tạo phòng chat mới
       await createChatRoom(userId, adminId);
     }
 
-    // Chuyển hướng người dùng đến phòng chat
     Get.toNamed(RouterName.userChat, arguments: chatRoomId);
   }
 
-  // Gửi tin nhắn mới
   Future<void> sendMessage(
       String chatRoomId, String messageText, String senderId) async {
     Message newMessage = Message(
@@ -59,7 +52,6 @@ class ChatController extends GetxController {
       isRead: false,
     );
 
-    // Thêm tin nhắn vào Firestore
     await firestore
         .collection('chatRooms')
         .doc(chatRoomId)
@@ -67,7 +59,6 @@ class ChatController extends GetxController {
         .add(newMessage.toMap());
   }
 
-  // Lấy danh sách tin nhắn từ Firestore
   void fetchMessages(String chatRoomId) {
     firestore
         .collection('chatRooms')
@@ -81,7 +72,6 @@ class ChatController extends GetxController {
     });
   }
 
-  // Lấy tất cả phòng chat cho một admin cụ thể
   void fetchChatRoomsForAdmin(String adminId) {
     firestore
         .collection('chatRooms')
@@ -93,7 +83,6 @@ class ChatController extends GetxController {
     });
   }
 
-  // Cập nhật trạng thái của tin nhắn
   Future<void> updateMessageStatus(String chatRoomId, String messageId) async {
     await firestore
         .collection('chatRooms')
