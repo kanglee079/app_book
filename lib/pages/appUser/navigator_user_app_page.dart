@@ -20,11 +20,11 @@ class _NavigatorUserPageState extends State<NavigatorUserPage> {
     return Scaffold(
       body: IndexedStack(
         index: _bottomNavIndex,
-        children: const <Widget>[
+        children: <Widget>[
           UserHomePage(),
-          UserCategoriesPage(),
-          UserFavoritePage(),
-          UserPersonPage(),
+          const UserCategoriesPage(),
+          const UserFavoritePage(),
+          const UserPersonPage(),
         ],
       ),
       bottomNavigationBar: AnimatedBottomNavigationBar(

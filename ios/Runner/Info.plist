@@ -58,5 +58,10 @@
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Chúng tôi cần quyền truy cập vào thư viện ảnh của bạn để chọn ảnh.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

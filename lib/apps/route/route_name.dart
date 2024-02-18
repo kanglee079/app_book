@@ -15,6 +15,9 @@ class RouterName {
   static String setting = "/setting";
   static String pdfView = "/pdfView";
   static String adminChatPage = "/adminChatPage";
+  static String addSliderPage = "/addSliderPage";
+  static String adminSliderPage = "/adminSliderPage";
+  static String editSliderPage = "/editSliderPage";
   //----------------------- User
   static String navUser = "/navUser";
   static String userHome = "/userHome";

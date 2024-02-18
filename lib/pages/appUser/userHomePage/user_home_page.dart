@@ -1,14 +1,17 @@
 import 'package:app_book/manage/controllers/book_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:get/get.dart';
 
+import '../../../manage/controllers/slider_controller.dart';
 import '../../../models/book_model.dart';
+import '../../../models/slider.dart';
 import '../../../widgets/item_featured_book.dart';
 import '../../../widgets/item_user_book.dart';
 
 class UserHomePage extends GetView<BookController> {
-  const UserHomePage({super.key});
+  UserHomePage({super.key});
+  final SliderController sliderController = Get.put(SliderController());
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -83,6 +86,41 @@ class UserHomePage extends GetView<BookController> {
               //     icon: Icons.search,
               //   ),
               // ),
+              const SizedBox(height: 10),
+              Text(
+                "Sliders",
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              Obx(() {
+                List<SliderImage> sliders = sliderController.sliderImages;
+                return CarouselSlider(
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    enlargeCenterPage: true,
+                    aspectRatio: 2.0,
+                  ),
+                  items: sliders.map((slider) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                          child: Container(
+                            clipBehavior: Clip.hardEdge,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Image.network(
+                              slider.imageUrl,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
+                );
+              }),
               const SizedBox(height: 20),
               Text(
                 "Featured Book",

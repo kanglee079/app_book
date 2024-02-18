@@ -9,16 +9,20 @@ import 'package:app_book/manage/bindings/notification_binding.dart';
 import 'package:app_book/manage/bindings/pdf_view_binding.dart';
 import 'package:app_book/manage/bindings/register_binding.dart';
 import 'package:app_book/manage/bindings/setting_binding.dart';
+import 'package:app_book/manage/bindings/slider_binding.dart';
 import 'package:app_book/manage/bindings/user_setting_binding.dart';
 import 'package:app_book/manage/middlewares/auth_middleware.dart';
 import 'package:app_book/pages/appAdmin/addBookPage/add_book_page.dart';
 import 'package:app_book/pages/appAdmin/addCategoryPage/add_category_page.dart';
+import 'package:app_book/pages/appAdmin/addSliderPage/add_slider_page.dart';
 import 'package:app_book/pages/appAdmin/adminBookPage/admin_book_page.dart';
 import 'package:app_book/pages/appAdmin/adminCategoryPage/admin_category_page.dart';
 import 'package:app_book/pages/appAdmin/adminManageUserPage/admin_manage_user_page.dart';
 import 'package:app_book/pages/appAdmin/adminPage/admin_page.dart';
+import 'package:app_book/pages/appAdmin/adminSliderPage/admin_slider_page.dart';
 import 'package:app_book/pages/appAdmin/editBookPage/edit_book_page.dart';
 import 'package:app_book/pages/appAdmin/editCategoryPage/edit_category_page.dart';
+import 'package:app_book/pages/appAdmin/editSliderPage/edit_slider_page.dart';
 import 'package:app_book/pages/appAdmin/listRoomChatPage/adminChatPage/admin_chat_page.dart';
 import 'package:app_book/pages/appAdmin/listRoomChatPage/list_room_chat_page.dart';
 import 'package:app_book/pages/appAdmin/navigator_admin_app_page.dart';
@@ -132,7 +136,7 @@ class RouterCustom {
     ),
     GetPage(
       name: RouterName.userHome,
-      page: () => const UserHomePage(),
+      page: () => UserHomePage(),
       binding: BookBinding(),
     ),
     GetPage(
@@ -194,6 +198,19 @@ class RouterCustom {
     GetPage(
       name: RouterName.adminChatPage,
       page: () => const AdminChatPage(),
+    ),
+    GetPage(
+      name: RouterName.addSliderPage,
+      page: () => AddSliderPage(),
+    ),
+    GetPage(
+      name: RouterName.adminSliderPage,
+      page: () => const AdminSliderPage(),
+      binding: SliderBinding(),
+    ),
+    GetPage(
+      name: RouterName.editSliderPage,
+      page: () => const EditSliderPage(),
     )
   ];
 }

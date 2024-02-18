@@ -27,34 +27,43 @@ class UserFavoritePage extends GetView<FavoriteBookController> {
           ],
         ),
       ),
-      body: Obx(
-        () => Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: controller.state.listFavoriteBook.length,
-            separatorBuilder: (BuildContext context, int index) {
-              return const Divider(height: 20, color: Colors.white);
-            },
-            itemBuilder: (BuildContext context, int index) {
-              List<Book> listBook = controller.state.listFavoriteBook;
-              return InkWell(
-                onTap: () {
-                  controller.transToDetailBook(listBook[index]);
-                },
-                child: ItemFavoriteBook(
-                  bookName: listBook[index].bookName,
-                  authorName: listBook[index].authorName,
-                  desc: listBook[index].desc,
-                  idBook: listBook[index].id,
-                  image: listBook[index].photoUrl,
-                ),
-              );
-            },
-          ),
-        ),
-      ),
+      body: Obx(() {
+        if (controller.state.listFavoriteBook.isEmpty) {
+          return Center(
+            child: Text(
+              "List is empty",
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          );
+        } else {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: controller.state.listFavoriteBook.length,
+              separatorBuilder: (BuildContext context, int index) {
+                return const Divider(height: 20, color: Colors.white);
+              },
+              itemBuilder: (BuildContext context, int index) {
+                Book book = controller.state.listFavoriteBook[index];
+                return InkWell(
+                  onTap: () {
+                    controller.transToDetailBook(book);
+                  },
+                  child: ItemFavoriteBook(
+                    bookName: book.bookName,
+                    authorName: book.authorName,
+                    desc: book.desc,
+                    idBook: book.id,
+                    image: book.photoUrl,
+                  ),
+                );
+              },
+            ),
+          );
+        }
+      }),
     );
   }
 }

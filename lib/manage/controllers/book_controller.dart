@@ -4,7 +4,9 @@ import 'package:app_book/apps/helper/randomId.dart';
 import 'package:app_book/manage/state/book_state.dart';
 import 'package:app_book/models/book_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../../apps/route/route_name.dart';
 import '../../models/user_model.dart';
@@ -137,6 +139,19 @@ class BookController extends GetxController {
             toFirestore: (Book book, _) => book.toMap())
         .doc(idBook)
         .update(book.toMap());
+  }
+
+  Future<void> downloadBook(String url, String fileName) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final path = directory.path;
+
+    final taskId = await FlutterDownloader.enqueue(
+      url: url,
+      savedDir: path,
+      fileName: fileName,
+      showNotification: true,
+      openFileFromNotification: true,
+    );
   }
 
   @override

@@ -31,7 +31,9 @@ class _UserDetailBookPageState extends State<UserDetailBookPage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              controllerBook.downloadBook(data.pdfUrl!, data.bookName!);
+            },
             icon: const Icon(
               Icons.download,
               size: 30,

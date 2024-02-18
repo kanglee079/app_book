@@ -57,6 +57,12 @@ class AdminPage extends StatelessWidget {
                 Get.toNamed(RouterName.listRoomChat);
               },
             ),
+            ItemAdminPage(
+              nameItem: "Slider quảng cáo",
+              ontap: () {
+                Get.toNamed(RouterName.adminSliderPage);
+              },
+            ),
           ],
         ),
       ),
