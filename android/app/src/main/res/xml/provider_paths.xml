@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Đường dẫn cho External Storage -->
+    <external-path
+        name="external_files"
+        path="." />
+    <!-- Đường dẫn cho External Cache -->
+    <external-cache-path
+        name="external_cache"
+        path="." />
+    <!-- Đường dẫn cho Internal Storage, sử dụng nếu cần -->
+    <files-path
+        name="internal_files"
+        path="." />
+    <!-- Đường dẫn cho Internal Cache -->
+    <cache-path
+        name="internal_cache"
+        path="." />
+</paths>

@@ -144,6 +144,7 @@ class BookController extends GetxController {
   Future<void> downloadBook(String url, String fileName) async {
     final directory = await getApplicationDocumentsDirectory();
     final path = directory.path;
+    print(path);
 
     final taskId = await FlutterDownloader.enqueue(
       url: url,
